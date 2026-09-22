@@ -1,0 +1,81 @@
+{
+  "id": "04-alohakommunikacio",
+  "title": "Aloha-nyelv",
+  "intro": "A Rumpusban vendéget vezetünk: észrevesszük, kapcsolódunk hozzá, segítünk dönteni. A cél nem az, hogy mindenki ugyanazt a hét mondatot mondja — hanem hogy mindenki ugyanazt az érzést adja.",
+  "lessons": [
+    {
+      "id": "04-01-aloha",
+      "type": "read",
+      "xp": 10,
+      "title": "Aloha az első szó",
+      "quote": "Látlak. Figyelek rád. Ismerem, amit kínálunk. Segítek választani. Örülök, hogy itt vagy.",
+      "paragraphs": [
+        "Aki elsőként találkozik a vendéggel, Alohával köszön — mindenki, nem csak a host. Aki észreveszi a belépő vendéget, szemkontaktussal és mosollyal jelzi, hogy látta. Ha nem egyértelmű a vendég nyelve, először magyarul szólítjuk meg, aztán szükség esetén váltunk angolra.",
+        "A „Mindenki Köszön” szabály: ha vendég belép, mindenki biccent vagy köszön — a konyhás is, ha kilát. Ha vendég távozik, mindenki elköszön. Ez nem egy ember feladata. Ez egy kultúra.",
+        "Az első mondat soha ne a „Sikerült választani?” legyen. Először azt érezze a vendég, hogy örülünk, hogy eljött: „Aloha! Örülök, hogy itt vagytok nálunk.” / „Mikor jártatok nálunk utoljára?”",
+        "A búcsú ugyanennyire számít. A vendégélmény nem a fizetéssel ér véget — aki találkozik a távozó vendéggel, köszönjön el: „Mahalo, szép estét! / Mahalo, várunk vissza!” Ugyanaz az elv érkezéskor és távozáskor: észrevettünk."
+      ],
+      "checklist": [
+        "Aloha",
+        "Szemkontaktus",
+        "Egy jó kérdés",
+        "Egy konkrét ajánlás",
+        "Check-back",
+        "Időben következő kör",
+        "Mahalo"
+      ]
+    },
+    {
+      "id": "04-02-tiltott",
+      "type": "phrase-pairs",
+      "title": "Rumpus-nyelv: tiltott → helyette",
+      "cards": [
+        { "bad": "Sikerült választani?", "good": "Nyitottak vagytok ajánlásra, vagy már megvan?", "why": "A „sikerült választani” egy feladatot sugall, amit vagy teljesített a vendég, vagy nem — semmit nem tudunk meg róla, és nem nyit teret arra, hogy szakértőként segítsünk.", "xp": 4 },
+        { "bad": "Voltatok már nálunk?", "good": "Mikor jártatok nálunk utoljára?", "why": "Ez a kérdés eleve feltételezi, hogy visszatérők — természetesebb, és bárhogy válaszolnak, van folytatás.", "xp": 4 },
+        { "bad": "Kértek még egy koktélt?", "good": "Néztétek már, melyikkel folytassuk?", "why": "Ne igen/nem kérdésre építs — vezesd a döntést. A jó pillanat: amikor az ital fogyóban van, de még nem fogyott el.", "xp": 4 },
+        { "bad": "Kértek kaját?", "good": "Ki akarjátok próbálni a tiki étlapunk egyik legjobb fogását?", "why": "A konkrét, indokolt ajánlás mindig erősebb, mint egy nyitott kérdés.", "xp": 4 },
+        { "bad": "Mit kértek?", "good": "Mivel kezdünk? / Mit hozhatok nektek?", "why": "Kis nyelvi váltás, de vezetést sugall ítélkezés helyett.", "xp": 4 },
+        { "bad": "A Death Race négy koktél.", "good": "Ez egy élménycsomagunk a legbevállalósabbaknak: négy koktélból áll, a végén pedig megérdemelt jutalom jár a teljesítésért.", "why": "A termékeinket sztoriként adjuk el, nem specifikációként.", "xp": 4 },
+        { "bad": "Szirup.", "good": "Egy fűszeres tiki összetevő, amit mi készítünk házon belül.", "why": "A „szirup” szó lekicsinyli az összetevőt — mondd el helyette, mi teszi különlegessé, és hogy házon belül készül.", "xp": 4 },
+        { "bad": "Akció.", "good": "Aktuális ajánlat / különleges lehetőség.", "why": "Kerüljük az olcsósággal asszociálódó szavakat — a Rumpus nem kuponvadász hely.", "xp": 4 },
+        { "bad": "Olcsóbb.", "good": "Fogalmazd meg pozitívan az értéket vagy előnyt.", "why": "Ne az árra fókuszálj, hanem arra, mit kap érte a vendég.", "xp": 4 }
+      ],
+      "wordcloud": ["élmény", "saját", "különleges", "legendás", "ajánlom", "felfedezni", "kipróbálni", "ízvilág", "megosztós", "kedvenc", "egyedi"]
+    },
+    {
+      "id": "04-03-ajanlas",
+      "type": "read",
+      "xp": 12,
+      "title": "Ajánlás, dekor visszakérdezése, small talk",
+      "quote": "Nem azt kérdezzük magunktól: „Hogyan adjak el még valamit?” Hanem: „Mi lenne a vendég következő jó döntése?”",
+      "paragraphs": [
+        "A dekor visszavétele természetes ok arra, hogy újra odamenj az asztalhoz — ez a legjobb pillanat egy check-backre: „Na, milyen lett? / Ízlik? / Jót ajánlottam?”",
+        "A legerősebb ételajánlás mindig ahhoz kapcsolódik, amit már rendeltek — sosem sima „Kértek kaját?”. Példa: „Látom, mindenki a frissebb-savanykásabb vonalra ment. Ehhez nagyon jól működne a ___ az aktuális étlapunkról.”",
+        "Small talk — eszköz, nem kötelező kör. Nem minden asztal akar beszélgetni, olvasd a vendéget. Külföldi vendégnél: „Honnan jöttetek? Hányadik napotok Budapesten?” Nappal → este: „Most a nappali Rumpust látjátok — este egészen más világ lesz belőle.” Ha tudod a nevet a foglalásból vagy születésnapról, használd természetesen."
+      ]
+    },
+    {
+      "id": "04-04-checkpoint",
+      "type": "quiz",
+      "xp": 12,
+      "title": "Gyors ellenőrzés",
+      "questions": [
+        {
+          "q": "Mikor van itt az ideje, hogy felajánld a következő kört?",
+          "options": [
+            { "t": "Amikor a pohár már teljesen kiürült.", "correct": false, "fb": "Ha megvárod az üres poharat, a vendégnek üresjárata lesz." },
+            { "t": "Amikor az ital még fogyóban van, de nem fogyott még el.", "correct": true, "fb": "Pontosan — mire elkészül a következő kör, az előző éppen elfogyhat." },
+            { "t": "Tíz perccel az első ital kihozatala után, órára mérve.", "correct": false, "fb": "Nem az eltelt idő számít, hanem hol tart a pohár." }
+          ]
+        },
+        {
+          "q": "Egy vendég megkérdezi, mi az a falernum. Mit válaszolsz?",
+          "options": [
+            { "t": "„Egy szirup.”", "correct": false, "fb": "Ez a tiltott válasz — lekicsinyli az összetevőt." },
+            { "t": "„Egy fűszeres tiki összetevő, amit mi készítünk házon belül.”", "correct": true, "fb": "Így adjuk el a terméket sztoriként, nem specifikációként." }
+          ]
+        }
+      ]
+    }
+  ]
+}

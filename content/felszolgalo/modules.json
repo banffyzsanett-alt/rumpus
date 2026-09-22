@@ -1,0 +1,61 @@
+{
+  "position": "felszolgalo",
+  "positionLabel": "Felszolgáló",
+  "title": "Rumpus Felszolgáló Út",
+  "modules": [
+    {
+      "id": "01-story",
+      "file": "01-story.json",
+      "title": "A Rumpus-sztori",
+      "subtitle": "Honnan jöttünk",
+      "icon": "leaf",
+      "xpReward": 30,
+      "unlockAfter": null
+    },
+    {
+      "id": "02-ertekek",
+      "file": "02-ertekek.json",
+      "title": "A 13 alapérték",
+      "subtitle": "Amiben hiszünk",
+      "icon": "flame",
+      "xpReward": 65,
+      "unlockAfter": "01-story"
+    },
+    {
+      "id": "03-elagazo-tortenetek",
+      "file": "03-elagazo-tortenetek.json",
+      "title": "Éles helyzetek",
+      "subtitle": "Döntened kell",
+      "icon": "path",
+      "xpReward": 60,
+      "unlockAfter": "02-ertekek"
+    },
+    {
+      "id": "04-alohakommunikacio",
+      "file": "04-alohakommunikacio.json",
+      "title": "Aloha-nyelv",
+      "subtitle": "Hogyan beszélünk",
+      "icon": "wave",
+      "xpReward": 70,
+      "unlockAfter": "03-elagazo-tortenetek"
+    },
+    {
+      "id": "05-gyakorlat",
+      "file": "05-gyakorlat.json",
+      "title": "A pálya",
+      "subtitle": "Kéz a munkában",
+      "icon": "tray",
+      "xpReward": 55,
+      "unlockAfter": "04-alohakommunikacio"
+    },
+    {
+      "id": "06-osszefoglalo-teszt",
+      "file": "06-osszefoglalo-teszt.json",
+      "title": "Próbatétel",
+      "subtitle": "Zárókvíz",
+      "icon": "mask",
+      "xpReward": 99,
+      "unlockAfter": "05-gyakorlat"
+    }
+  ]
+}

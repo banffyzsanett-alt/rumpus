@@ -1,0 +1,79 @@
+{
+  "id": "06-osszefoglalo-teszt",
+  "title": "Próbatétel",
+  "intro": "Az utolsó kör. 9 kérdés az egész úton tanultakból. A rossz válasz nem büntet — csak a jó ad pontot. Hajrá.",
+  "lessons": [
+    {
+      "id": "06-01-teszt",
+      "type": "quiz",
+      "xp": 99,
+      "title": "Záró kvíz",
+      "questions": [
+        {
+          "q": "Melyik évben nyílt meg a Rumpus Tiki Bar?",
+          "options": [
+            { "t": "2011-ben", "correct": false, "fb": "2011-ben csak a szikra volt meg." },
+            { "t": "2013 decemberében", "correct": true, "fb": "Pontosan, december 6-án, a Király utcában." },
+            { "t": "2016-ban", "correct": false, "fb": "Nem — a Rumpus 2013-ban nyílt." }
+          ]
+        },
+        {
+          "q": "Egy vendég panaszkodik, de nincs igaza. Mi a helyes első lépés?",
+          "options": [
+            { "t": "Azonnal megmondod neki, hogy téved.", "correct": false, "fb": "Ne vitatkozz a vendéggel — ez sosem vet ránk jó fényt." },
+            { "t": "Higgadtan végighallgatod, majd bevonod a műszakvezetőt.", "correct": true, "fb": "Így van — hallgatás, aztán a megfelelő hatáskör." }
+          ]
+        },
+        {
+          "q": "Látod, hogy egy koszos asztal nem a te szekciód, de senki más nincs a közelben. Mit teszel?",
+          "options": [
+            { "t": "Felveszed, letörlöd — nem kérdezed, kié volt.", "correct": true, "fb": "Ez a bajtársiasság: egymás hátát védjük, „nem az én dolgom” nélkül." },
+            { "t": "Otthagyod — majd valaki más észreveszi.", "correct": false, "fb": "A cél egy karibi paradicsom, nem egy lerakat." }
+          ]
+        },
+        {
+          "q": "Mi az első szó, amit egy belépő vendégnek mondunk?",
+          "options": [
+            { "t": "Sziasztok!", "correct": false, "fb": "Ez sem rossz, de nálunk van egy márkaarculati köszönés, ami mindig ott van előtte." },
+            { "t": "Aloha!", "correct": true, "fb": "Mindig — mindenki, nem csak a host." }
+          ]
+        },
+        {
+          "q": "Melyik mondatot NEM használjuk soha egy vendégnél?",
+          "options": [
+            { "t": "„Sikerült választani?”", "correct": true, "fb": "Ez a legfontosabb tiltott mondat — helyette: „Nyitottak vagytok ajánlásra, vagy már megvan?”" },
+            { "t": "„Mikor jártatok nálunk utoljára?”", "correct": false, "fb": "Ez pont a jó irány — feltételezi, hogy visszatérők." }
+          ]
+        },
+        {
+          "q": "Mikor van itt az ideje felajánlani a következő kört?",
+          "options": [
+            { "t": "Amikor a pohár már teljesen kiürült.", "correct": false, "fb": "Akkor már üresjárat keletkezett." },
+            { "t": "Amikor az ital még fogyóban van, de nem fogyott még el.", "correct": true, "fb": "Pontosan ez az ideális pillanat." }
+          ]
+        },
+        {
+          "q": "Egészítsd ki: „Nálunk az illat…”",
+          "options": [
+            { "t": "…nem számít, amíg dolgozol.", "correct": false, "fb": "Nálunk pont hogy számít — ez a szint." },
+            { "t": "…az egyenruha része.", "correct": true, "fb": "Így van — ez nem személyes sértés, ez a Rumpus-standard." }
+          ]
+        },
+        {
+          "q": "Mikor kell leszedni a dekort az asztalról?",
+          "options": [
+            { "t": "Amint az italok elfogytak és a szárazjég már elszublimált.", "correct": true, "fb": "Minél előbb — a cél egy karibi paradicsom, nem egy lerakat." },
+            { "t": "Csak akkor, ha a vendég szól érte.", "correct": false, "fb": "Ne várd meg — ez a te felelősséged, nem a vendégé." }
+          ]
+        },
+        {
+          "q": "Mit mondunk a vendégnek, amikor távozik?",
+          "options": [
+            { "t": "Mahalo!", "correct": true, "fb": "Pontosan — ugyanaz az elv érkezéskor és távozáskor: észrevettünk." },
+            { "t": "Viszlát!", "correct": false, "fb": "Nem rossz, csak nem ez a Rumpus-szó rá." }
+          ]
+        }
+      ]
+    }
+  ]
+}

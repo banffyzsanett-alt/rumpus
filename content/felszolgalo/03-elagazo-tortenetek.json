@@ -1,0 +1,157 @@
+{
+  "id": "03-elagazo-tortenetek",
+  "title": "Éles helyzetek",
+  "intro": "Három valós szituáció a pályáról. Nincs egyetlen jó válasz elsőre — van egy döntés, aztán egy újabb. Nézd meg, hová vezetnek az útjaid.",
+  "lessons": [
+    {
+      "id": "03-01-panaszkodo-vendeg",
+      "type": "branch-story",
+      "title": "A panasz",
+      "start": "root",
+      "xpMap": { "good": 20, "neutral": 12, "bad": 6 },
+      "nodes": {
+        "root": {
+          "text": "Egy vendég panaszkodik az italára — de te pontosan tudod, hogy jól készült el. Nincs igaza. Mit csinálsz?",
+          "choices": [
+            { "text": "Azonnal megmondod neki, hogy téved.", "next": "vitatkozas" },
+            { "text": "Higgadtan végighallgatod, aztán bevonod a műszakvezetőt.", "next": "jo_irany" }
+          ]
+        },
+        "vitatkozas": {
+          "text": "A vendég hangja felmegy. Két szomszéd asztal is felkapja a fejét. Mit teszel most?",
+          "choices": [
+            { "text": "Folytatod — kiállsz amellett, hogy neked van igazad.", "next": "vita_vege" },
+            { "text": "Visszakozol, és most szólsz a műszakvezetőnek.", "next": "kesoi_mentes" }
+          ]
+        },
+        "jo_irany": {
+          "text": "Végighallgatod, nem vágsz közbe. A vendég érzi, hogy figyelsz rá. Mi jön most?",
+          "choices": [
+            { "text": "Rögtön hívod a műszakvezetőt, mielőtt bármit ígérnél.", "next": "profi_lezaras" },
+            { "text": "Megpróbálod te magad meggyőzni, mielőtt szólnál a vezetőnek.", "next": "felig_jo" }
+          ]
+        },
+        "vita_vege": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "A vendég feláll, otthagyja a pénzt az asztalon, és dühösen távozik. A szomszéd asztalok is érzik a feszültséget. Pont ez történt, amit a Rumpusban nem akarunk: egy panaszból nyílt konfliktus lett — a vendég elől ne vitatkozz, hallgasd meg, és ha kell, vond be a vezetőt."
+        },
+        "kesoi_mentes": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "Későn, de jó irányba fordul a helyzet. A műszakvezető lecsendesíti a kedélyeket, de a vendég már rossz szájízzel távozik. A bizalmat nehéz visszaszerezni, ha előbb vitatkoztál — a sorrend számít: előbb hallgatás, csak utána a hatáskör bevonása."
+        },
+        "profi_lezaras": {
+          "terminal": true,
+          "outcome": "good",
+          "text": "A műszakvezető higgadtan átveszi az ügyet, a vendég érzi, hogy komolyan veszik. Egyetlen felesleges szó sem esett. Pontosan ez a panaszkezelés lényege: hallgassuk meg a vendég észrevételét, majd a megfelelő hatáskör döntsön — nálad ez sokszor a műszakvezető."
+        },
+        "felig_jo": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "Jó szándékkal próbálkozol, de a vendég azt érzi, hogy vitatkozol vele — még ha halkan is. Végül úgyis a műszakvezetőt kell hívnod, csak közben elvesztettél pár percet és egy kis bizalmat."
+        }
+      }
+    },
+    {
+      "id": "03-02-koszos-asztal",
+      "type": "branch-story",
+      "title": "Nem az én dolgom",
+      "start": "root",
+      "xpMap": { "good": 20, "neutral": 12, "bad": 6 },
+      "nodes": {
+        "root": {
+          "text": "Elhaladtodban észreveszed, hogy egy szomszédos asztal koszos — de nem a te szekciód. Mit csinálsz?",
+          "choices": [
+            { "text": "Felveszed, letörlöd — nem kérdezed, kié volt.", "next": "megoldva" },
+            { "text": "Szólsz annak, akinek a feladata lett volna.", "next": "szolsz" },
+            { "text": "Otthagyod — majd valaki más észreveszi.", "next": "otthagyva" }
+          ]
+        },
+        "megoldva": {
+          "text": "Miközben törölsz, észreveszed, hogy a kollégád, akié az asztal lett volna, épp egy nehéz vendéggel küzd a bárnál. Mit teszel?",
+          "choices": [
+            { "text": "Odaszólsz neki halkan: „megoldva, ne stresszelj”.", "next": "bajtarsias" },
+            { "text": "Nem szólsz semmit, csak tovább dolgozol.", "next": "csendes_segitseg" }
+          ]
+        },
+        "szolsz": {
+          "text": "Szólsz neki, de ő épp egy vendéget szolgál ki, nem tud azonnal menni. Mit csinálsz?",
+          "choices": [
+            { "text": "Megvárod, amíg ráér — közben az asztal koszos marad.", "next": "varakozas" },
+            { "text": "Végül te oldod meg, csak két perccel később.", "next": "kesobb_megoldva" }
+          ]
+        },
+        "bajtarsias": {
+          "terminal": true,
+          "outcome": "good",
+          "text": "A kollégád egy pillanatra rád néz, bólint, és higgadtan folytatja a dolgát. Ezt jelenti a bajtársiasság — nem a szavakban, a tettekben: egymás hátát védjük, „nem az én dolgom” nélkül."
+        },
+        "csendes_segitseg": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "A koszos asztal probléma megoldva, de a kollégád nem is tudja, hogy segítettél. Legközelebb ő is átnézhetne a te asztalaid felett, ha tudná, hogy ez oda-vissza működik — szólj neki, ha megteszel valamit helyette."
+        },
+        "varakozas": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "Közben új vendégek érkeznek, és pont a koszos asztal mellé ülnek le. Az első benyomásuk egy törölt szalvéta és egy elszáradt szárazjég-nyom — a cél egy karibi paradicsom, nem egy lerakat."
+        },
+        "kesobb_megoldva": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "Megoldódik, csak két perccel később, mint ha rögtön magad csinálod. Nem az számít, kié volt a feladat — az, hogy mennyi ideig marad rossz állapotban a vendégtér."
+        },
+        "otthagyva": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "Tíz percig senki nem veszi észre. Egy új vendégpár pont oda ül le. Az első pillantásuk egy koszos asztal — amit te is láttál, csak nem tetted a dolgod."
+        }
+      }
+    },
+    {
+      "id": "03-03-elfoglalt-vagy",
+      "type": "branch-story",
+      "title": "Bejön egy vendég, de épp foglalt vagy",
+      "start": "root",
+      "xpMap": { "good": 20, "neutral": 12, "bad": 6 },
+      "nodes": {
+        "root": {
+          "text": "Rendelést veszel fel egy asztalnál, amikor az ajtóban megjelenik egy új vendégpár. Senki más nincs a közelben. Mit csinálsz?",
+          "choices": [
+            { "text": "Azonnal feléjük nézel, szemkontaktust keresel: „mindjárt jövök”.", "next": "eszrevetted" },
+            { "text": "Befejezed, amit csinálsz, aztán odamész.", "next": "kesobb" },
+            { "text": "Remélve, hogy a host vagy egy kolléga észreveszi.", "next": "senki_sem" }
+          ]
+        },
+        "eszrevetted": {
+          "text": "A pár bólint, és leül egy szabad asztalhoz, amíg befejezed az előző rendelést. Mi jön ezután?",
+          "choices": [
+            { "text": "Amint végzel, azonnal hozzájuk mész Alohával.", "next": "profi" },
+            { "text": "Még elintézel valami mást, mielőtt odamész.", "next": "felejtve" }
+          ]
+        },
+        "profi": {
+          "terminal": true,
+          "outcome": "good",
+          "text": "A pár érzi, hogy számítottak rájuk, még ha várniuk is kellett pár percet. Ez a különbség egy észrevett és egy figyelmen kívül hagyott vendég között — az azonnali kommunikáció jelzi, hogy fontosak."
+        },
+        "felejtve": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "A pár várakozik, a kezdeti jó benyomás kezd megkopni. Az azonnali szemkontaktus önmagában nem elég, ha utána mégis várakoztatod őket."
+        },
+        "kesobb": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "A pár némán áll az ajtóban másfél percig, mire feléjük fordulsz. Semmi durva nem történt, de az első benyomás — hogy itt azonnal észreveszik az embert — már elúszott."
+        },
+        "senki_sem": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "Senki nem veszi észre őket egy percig. Végül maguktól keresnek asztalt — pont az, amit a Rumpusban nem szeretnénk: hogy a vendégnek kelljen megoldania, hogy észrevegyék."
+        }
+      }
+    }
+  ]
+}

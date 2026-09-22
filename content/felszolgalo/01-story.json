@@ -1,0 +1,69 @@
+{
+  "id": "01-story",
+  "title": "A Rumpus-sztori",
+  "intro": "Mielőtt bármit is megtanulnál a pályáról, tudnod kell, hová léptél be. Ez nem egy céges háttértörténet — ez az, ami miatt minden más a modulban egyáltalán számít.",
+  "lessons": [
+    {
+      "id": "01-01-nem-franchise",
+      "type": "read",
+      "xp": 5,
+      "title": "Nem egy tervasztalon született",
+      "image": {
+        "placeholder": true,
+        "alt": "Rumpus Tiki Bar enteriőr — Király utca",
+        "note": "KÉP HELYE: Rumpus belső tér, Donn Beach előtér vagy a bárpult. Zsanett tud adni valós fotót."
+      },
+      "paragraphs": [
+        "A Rumpus nem egy franchise-koncepcióként született. Bánfi Beáta, azaz Tiki Mamma egyszerűen elkezdte felépíteni azt a helyet, amit ő maga is keresett.",
+        "Amikor ma felveszed a munkaruhát, nem egy márkába lépsz be. Egy emberbe lépsz bele, aki egyszer csak úgy döntött, hogy Budapesten sincs igazi tiki bár — szóval csinál egyet."
+      ]
+    },
+    {
+      "id": "01-02-idovonal",
+      "type": "read",
+      "xp": 10,
+      "title": "Az út idáig",
+      "timeline": [
+        { "year": "2011", "title": "A szikra", "text": "Tiki Mamma először találkozott a tiki kultúrával — és megszületett benne a saját Rumpus-világ gondolata." },
+        { "year": "2013", "title": "A Rumpus megszületik", "text": "December 6-án a vízióból valóság lett: megnyílt a Rumpus Tiki Bar, Magyarország első tiki világa, a Király utcában." },
+        { "year": "2019", "title": "Rendszerré válik", "text": "A családi kisvállalkozásból tudatosan épített rendszer lett — elindult a franchise-struktúra felépítése." },
+        { "year": "2025", "title": "Elismerés", "text": "Több mint egy évtizednyi építkezés Leader of the Year díjat hozott Tiki Mammának." },
+        { "year": "2026", "title": "Rumpus univerzum", "text": "Kitchen, Movement, saját termékvilág és új élmények épülnek a Tiki Bar köré. Egy helyből fokozatosan teljes brand lesz." }
+      ]
+    },
+    {
+      "id": "01-03-ma",
+      "type": "read",
+      "xp": 10,
+      "title": "Amibe belépsz",
+      "quote": "2013-ban Budapest első és egyetlen tiki bárjaként indult. Ma nappal Kitchen, este ikonikus Tiki Bar, és már jóval több is annál.",
+      "paragraphs": [
+        "Két egységünk van, és hosszabb távon nemzetközi franchise- és licencpartnereket építünk — elsősorban Európában.",
+        "Ez azt jelenti, hogy amit te ma megtanulsz, az nem egy helyi szokás. Ez a rendszer, amit majd más városokban is ugyanígy fognak csinálni. Amikor Alohával köszönsz, vagy amikor egy koszos poharat felveszel útközben anélkül, hogy szólnának — a Rumpus-standardot építed, nem csak egy műszakot húzol le."
+      ]
+    },
+    {
+      "id": "01-04-checkpoint",
+      "type": "quiz",
+      "xp": 15,
+      "title": "Gyors ellenőrzés",
+      "questions": [
+        {
+          "q": "Mikor nyílt meg a Rumpus Tiki Bar?",
+          "options": [
+            { "t": "2011-ben", "correct": false, "fb": "2011-ben csak a szikra volt meg — Tiki Mamma ekkor találkozott a tiki kultúrával." },
+            { "t": "2013 decemberében", "correct": true, "fb": "Pontosan — december 6-án, a Király utcában." },
+            { "t": "2019-ben", "correct": false, "fb": "2019-ben vált a családi vállalkozás tudatosan épített rendszerré, ekkor indult a franchise-struktúra." }
+          ]
+        },
+        {
+          "q": "Miért számít ez neked a pályán?",
+          "options": [
+            { "t": "Mert ez csak egy háttértörténet, nincs köze a munkához.", "correct": false, "fb": "Pont az ellenkezője — amit te csinálsz, az a rendszer, amit majd más városok is átvesznek." },
+            { "t": "Mert amit ma csinálsz, az a Rumpus-standardot építi, amit majd franchise-partnerek is követnek.", "correct": true, "fb": "Így van. Nem csak egy műszakot húzol le — a rendszert építed." }
+          ]
+        }
+      ]
+    }
+  ]
+}

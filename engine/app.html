@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Rumpus Onboarding</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="topbar">
+  <div class="row">
+    <div class="brandmark" id="brandmark">Rumpus Onboarding</div>
+    <div class="stat-pill streak zero" id="streakpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c1 4-3 5-3 9a3 3 0 006 0c0-1.5-1-2-1-3.5 2 1 3 3.5 3 5.5a5 5 0 01-10 0C7 8 10 6 12 2z"/></svg> <span id="streaknum">0</span></div>
+    <div class="stat-pill xp" id="xppill">0 XP</div>
+    <div class="stat-pill team" id="teampill" title="A csapatos nézet a 2. fázisban érkezik">Csapat · hamarosan</div>
+  </div>
+</div>
+<div id="levelbadge" hidden></div>
+
+<main class="wrap">
+  <section id="path"></section>
+  <section id="moduleview" hidden></section>
+</main>
+
+<div id="leveltoast"></div>
+
+<script src="./engine.js"></script>
+<script>
+(function () {
+  "use strict";
+  var E = RumpusEngine;
+  var LOCK_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>';
+
+  var position = new URLSearchParams(location.search).get("pos") || "felszolgalo";
+  var basePath = "../content/" + position + "/";
+  var engine = new E.Engine(position);
+  var contentCache = {};
+
+  var pathEl = document.getElementById("path");
+  var moduleviewEl = document.getElementById("moduleview");
+  var xppill = document.getElementById("xppill");
+  var streakpill = document.getElementById("streakpill");
+  var levelbadge = document.getElementById("levelbadge");
+  var brandmark = document.getElementById("brandmark");
+  var leveltoast = document.getElementById("leveltoast");
+
+  function updateHeader(pulseXp) {
+    xppill.textContent = engine.totalXp() + " XP";
+    if (pulseXp) {
+      xppill.style.transform = "scale(1.12)";
+      setTimeout(function () { xppill.style.transform = "scale(1)"; }, 180);
+    }
+    var streak = engine.streakCount();
+    document.getElementById("streaknum").textContent = streak;
+    streakpill.classList.toggle("zero", streak === 0);
+    var label = engine.levelLabel();
+    if (label) {
+      levelbadge.hidden = false;
+      levelbadge.textContent = label + " — " + engine.overallPercent() + "% Rumpus-készültség";
+    } else {
+      levelbadge.hidden = true;
+    }
+  }
+
+  function maybeShowLevelUp(prevLabel) {
+    var newLabel = engine.levelLabel();
+    if (newLabel && newLabel !== prevLabel) {
+      leveltoast.textContent = "Új szint: " + newLabel;
+      leveltoast.classList.add("show");
+      setTimeout(function () { leveltoast.classList.remove("show"); }, 2600);
+    }
+  }
+
+  function withLevelTracking(fn) {
+    var prev = engine.levelLabel();
+    var changed = fn();
+    if (changed) { updateHeader(true); maybeShowLevelUp(prev); }
+    return changed;
+  }
+
+  // ---------------------------------------------------------------
+  // Betöltés
+  // ---------------------------------------------------------------
+  fetch(basePath + "modules.json")
+    .then(function (r) { return r.json(); })
+    .then(function (meta) {
+      engine.setModulesMeta(meta);
+      brandmark.textContent = meta.title || "Rumpus Onboarding";
+      var loads = meta.modules.map(function (m) {
+        return fetch(basePath + m.file).then(function (r) { return r.json(); }).then(function (content) {
+          contentCache[m.id] = content;
+          engine.registerModuleContent(m.id, content);
+        });
+      });
+      return Promise.all(loads);
+    })
+    .then(function () {
+      updateHeader(false);
+      renderPath();
+    })
+    .catch(function (err) {
+      pathEl.innerHTML = '<div class="locked-msg">Nem sikerült betölteni a tartalmat.<br>Ha ezt a fájlt közvetlenül (file://) nyitottad meg, indíts helyette egy egyszerű helyi szervert, vagy nyisd meg a publikált (https) linken.<br><br><small>' + E.esc(err.message || err) + '</small></div>';
+    });
+
+  // ---------------------------------------------------------------
+  // Path (útvonal) nézet
+  // ---------------------------------------------------------------
+  function ordinal(i) { return (i < 9 ? "0" : "") + (i + 1); }
+
+  function renderPath() {
+    var meta = engine.modulesMeta;
+    var html = '<div class="path-intro"><h1>' + E.esc(meta.positionLabel || "") + '</h1>' +
+      '<p>Haladj végig az úton. Egy modult csak akkor tudsz megnyitni, ha az előzőt 100%-ra vitted.</p></div>' +
+      '<div class="path-track">';
+    meta.modules.forEach(function (m, i) {
+      var pct = engine.modulePercent(m.id);
+      var unlocked = engine.isModuleUnlocked(m.id);
+      var done = pct >= 100;
+      var side = i % 2 === 0 ? "left" : "right";
+      html += '<div class="path-node' + (unlocked ? "" : " locked") + (done ? " done" : "") + '" data-side="' + side + '" data-module="' + m.id + '">' +
+        '<div class="node-ring" style="--pct:' + pct + '"><span class="node-icon">' + (done ? "✓" : (unlocked ? ordinal(i) : LOCK_SVG)) + '</span></div>' +
+        '<div class="node-label"><span class="node-title">' + E.esc(m.title) + '</span>' +
+        '<span class="node-sub">' + E.esc(m.subtitle || "") + '</span>' +
+        '<span class="node-pct">' + (unlocked ? pct + "%" : "Zárolva") + '</span></div>' +
+        '</div>';
+    });
+    html += "</div>";
+    pathEl.innerHTML = html;
+    E.qsa(".path-node", pathEl).forEach(function (node) {
+      node.addEventListener("click", function () {
+        var id = node.getAttribute("data-module");
+        if (engine.isModuleUnlocked(id)) openModule(id);
+        else {
+          node.animate(
+            [{ transform: "translateX(0)" }, { transform: "translateX(-4px)" }, { transform: "translateX(4px)" }, { transform: "translateX(0)" }],
+            { duration: 220 }
+          );
+        }
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // Modul nézet
+  // ---------------------------------------------------------------
+  function closeModule() {
+    moduleviewEl.hidden = true;
+    moduleviewEl.innerHTML = "";
+    pathEl.hidden = false;
+    renderPath();
+    updateHeader(false);
+  }
+
+  function openModule(moduleId) {
+    var meta = engine.modulesMeta.modules.filter(function (m) { return m.id === moduleId; })[0];
+    var content = contentCache[moduleId];
+    if (!meta || !content) return;
+    pathEl.hidden = true;
+    moduleviewEl.hidden = false;
+    moduleviewEl.innerHTML =
+      '<div class="module-header"><button class="backbtn" id="backbtn">← Útvonal</button>' +
+      '<div class="module-title-block"><h2>' + E.esc(meta.title) + '</h2><div class="sub">' + E.esc(meta.subtitle || "") + '</div></div></div>' +
+      '<div class="module-intro">' + E.esc(content.intro || "") + '</div>' +
+      '<div id="lessonlist"></div>';
+    document.getElementById("backbtn").addEventListener("click", closeModule);
+    var list = document.getElementById("lessonlist");
+    (content.lessons || []).forEach(function (lsn) {
+      var block = E.el("div", "lesson-block");
+      block.setAttribute("data-lesson", lsn.id);
+      list.appendChild(block);
+      renderLesson(moduleId, lsn, block);
+    });
+  }
+
+  function renderLesson(moduleId, lsn, block) {
+    var renderer = LESSON_RENDERERS[lsn.type];
+    if (!renderer) { block.innerHTML = "<p>Ismeretlen leckeformátum: " + E.esc(lsn.type) + "</p>"; return; }
+    renderer(moduleId, lsn, block);
+  }
+
+  function markLessonDoneTag(block, title) {
+    var h3 = block.querySelector("h3");
+    if (block.querySelector(".lesson-done-tag")) return;
+    var tag = E.el("div", "lesson-done-tag", "✓ Kész");
+    block.insertBefore(tag, h3);
+  }
+
+  // ---------------------------------------------------------------
+  // Lecke-renderelők típusonként
+  // ---------------------------------------------------------------
+  var LESSON_RENDERERS = {};
+
+  LESSON_RENDERERS.read = function (moduleId, lsn, block) {
+    var html = "<h3>" + E.esc(lsn.title) + "</h3>";
+    if (lsn.image && lsn.image.placeholder) {
+      html += '<div class="video-placeholder-note">' + E.esc(lsn.image.note || "Kép helye") + '</div>';
+    }
+    if (lsn.quote) html += '<div class="quote-block">„' + E.esc(lsn.quote) + '”</div>';
+    (lsn.paragraphs || []).forEach(function (p) { html += "<p>" + E.esc(p) + "</p>"; });
+    if (lsn.timeline) {
+      lsn.timeline.forEach(function (t) {
+        html += '<div class="timeline-item"><div class="timeline-year">' + E.esc(t.year) + '</div>' +
+          '<div class="timeline-text"><strong>' + E.esc(t.title) + '</strong><p>' + E.esc(t.text) + '</p></div></div>';
+      });
+    }
+    if (lsn.checklist) {
+      html += '<ul class="checklist">' + lsn.checklist.map(function (c) { return "<li>" + E.esc(c) + "</li>"; }).join("") + "</ul>";
+    }
+    html += '<button class="primary-btn" data-act="done">Tovább — megvan (+' + (lsn.xp || 0) + ' XP)</button>';
+    block.innerHTML = html;
+    var done = engine.isUnitDone(moduleId, lsn.id);
+    var btn = block.querySelector('[data-act="done"]');
+    if (done) { btn.disabled = true; btn.textContent = "Elvégezve"; markLessonDoneTag(block, lsn.title); }
+    btn.addEventListener("click", function () {
+      withLevelTracking(function () { return engine.completeUnit(moduleId, lsn.id, lsn.xp || 0); });
+      btn.disabled = true; btn.textContent = "Elvégezve";
+      markLessonDoneTag(block, lsn.title);
+    });
+  };
+
+  LESSON_RENDERERS["creed-cards"] = function (moduleId, lsn, block) {
+    var html = "<h3>" + E.esc(lsn.title) + "</h3><div class=\"creed-deck\"></div>";
+    if (lsn.outro) html += '<p id="creedoutro" hidden>' + E.esc(lsn.outro) + "</p>";
+    block.innerHTML = html;
+    var deck = block.querySelector(".creed-deck");
+    var allDone = true;
+    lsn.cards.forEach(function (card, idx) {
+      var unitId = lsn.id + "#" + idx;
+      var done = engine.isUnitDone(moduleId, unitId);
+      if (!done) allDone = false;
+      var cardEl = E.el("div", "creed-card" + (done ? " read" : ""),
+        '<div class="creed-num">' + card.num + " / " + lsn.cards.length + '</div>' +
+        '<div class="creed-name">' + E.esc(card.name) + '</div>' +
+        '<div class="creed-text">„' + E.esc(card.credo) + '”</div>');
+      cardEl.addEventListener("click", function () {
+        if (engine.isUnitDone(moduleId, unitId)) return;
+        withLevelTracking(function () { return engine.completeUnit(moduleId, unitId, card.xp || 0); });
+        cardEl.classList.add("read");
+        checkAllRead();
+      });
+      deck.appendChild(cardEl);
+    });
+    function checkAllRead() {
+      var all = lsn.cards.every(function (c, i) { return engine.isUnitDone(moduleId, lsn.id + "#" + i); });
+      if (all) {
+        markLessonDoneTag(block, lsn.title);
+        var outro = block.querySelector("#creedoutro");
+        if (outro) outro.hidden = false;
+      }
+    }
+    if (allDone) checkAllRead();
+  };
+
+  LESSON_RENDERERS["phrase-pairs"] = function (moduleId, lsn, block) {
+    var html = "<h3>" + E.esc(lsn.title) + '</h3><div class="pairs-deck"></div>';
+    block.innerHTML = html;
+    var deck = block.querySelector(".pairs-deck");
+    lsn.cards.forEach(function (card, idx) {
+      var unitId = lsn.id + "#" + idx;
+      var done = engine.isUnitDone(moduleId, unitId);
+      var cardEl = E.el("div", "flip-card",
+        '<div class="flip-front"><span class="flip-tag">Tiltott</span>' +
+        '<div class="phrase">„' + E.esc(card.bad) + '”</div>' +
+        '<div class="flip-hint">Koppints — mit mondjunk helyette?</div></div>' +
+        '<div class="flip-back' + (done ? " show" : "") + '"><span class="good-tag">Helyette</span>' +
+        '<div class="phrase">„' + E.esc(card.good) + '”</div>' +
+        '<div class="why">' + E.esc(card.why) + "</div></div>");
+      cardEl.addEventListener("click", function () {
+        var back = cardEl.querySelector(".flip-back");
+        var hint = cardEl.querySelector(".flip-hint");
+        if (back.classList.contains("show")) return;
+        back.classList.add("show");
+        if (hint) hint.style.display = "none";
+        withLevelTracking(function () { return engine.completeUnit(moduleId, unitId, card.xp || 0); });
+        checkAllFlipped();
+      });
+      if (done) { var hint = cardEl.querySelector(".flip-hint"); if (hint) hint.style.display = "none"; }
+      deck.appendChild(cardEl);
+    });
+    if (lsn.wordcloud) {
+      block.insertAdjacentHTML("beforeend", '<div class="wordcloud">' + lsn.wordcloud.map(function (w) { return "<span>" + E.esc(w) + "</span>"; }).join("") + "</div>");
+    }
+    function checkAllFlipped() {
+      var all = lsn.cards.every(function (c, i) { return engine.isUnitDone(moduleId, lsn.id + "#" + i); });
+      if (all) markLessonDoneTag(block, lsn.title);
+    }
+    checkAllFlipped();
+  };
+
+  LESSON_RENDERERS["checklist-video"] = function (moduleId, lsn, block) {
+    var html = "<h3>" + E.esc(lsn.title) + "</h3>";
+    html += '<div class="video-wrap">' +
+      '<video class="video-el" controls playsinline hidden><track kind="captions" srclang="hu" label="Magyar felirat"></video>' +
+      '<div class="video-placeholder-note">' + E.esc((lsn.video && lsn.video.note) || "Videó helye") + '</div>' +
+      "</div>";
+    if (lsn.quote) html += '<div class="quote-block">„' + E.esc(lsn.quote) + '”</div>';
+    (lsn.paragraphs || []).forEach(function (p) { html += "<p>" + E.esc(p) + "</p>"; });
+    html += '<ul class="checklist interactive"></ul>';
+    html += '<button class="primary-btn" data-act="done" disabled>Kész, átnéztem (+' + (lsn.xp || 0) + ' XP)</button>';
+    block.innerHTML = html;
+    var ul = block.querySelector(".checklist.interactive");
+    var checked = {};
+    var done = engine.isUnitDone(moduleId, lsn.id);
+    (lsn.checklist || []).forEach(function (item, idx) {
+      var li = E.el("li" + (done ? " class=\"checked\"" : ""), null, E.esc(item));
+      if (done) checked[idx] = true;
+      li.addEventListener("click", function () {
+        if (done) return;
+        li.classList.toggle("checked");
+        checked[idx] = li.classList.contains("checked");
+        var all = (lsn.checklist || []).every(function (_, i) { return checked[i]; });
+        block.querySelector('[data-act="done"]').disabled = !all;
+      });
+      ul.appendChild(li);
+    });
+    var btn = block.querySelector('[data-act="done"]');
+    if (done) { btn.disabled = true; btn.textContent = "Elvégezve"; markLessonDoneTag(block, lsn.title); }
+    else {
+      var allChecked = (lsn.checklist || []).every(function (_, i) { return checked[i]; });
+      btn.disabled = !allChecked;
+    }
+    btn.addEventListener("click", function () {
+      withLevelTracking(function () { return engine.completeUnit(moduleId, lsn.id, lsn.xp || 0); });
+      btn.disabled = true; btn.textContent = "Elvégezve";
+      markLessonDoneTag(block, lsn.title);
+    });
+  };
+
+  LESSON_RENDERERS["branch-story"] = function (moduleId, lsn, block) {
+    var unitId = lsn.id;
+    var alreadyDone = engine.isUnitDone(moduleId, unitId);
+    block.innerHTML = "<h3>" + E.esc(lsn.title) + '</h3><div class="story-node"></div>';
+    var holder = block.querySelector(".story-node");
+    function renderNode(nodeId) {
+      var node = lsn.nodes[nodeId];
+      if (node.terminal) {
+        holder.innerHTML =
+          '<div class="story-outcome ' + node.outcome + '"><span class="tag">' +
+          (node.outcome === "good" ? "Jól döntöttél" : node.outcome === "neutral" ? "Félig jó irány" : "Ez most nem jött be") +
+          '</span>' + E.esc(node.text) + '</div>' +
+          '<button class="story-restart">Kezdés elölről</button>';
+        if (!engine.isUnitDone(moduleId, unitId)) {
+          var xp = (lsn.xpMap && lsn.xpMap[node.outcome]) || 0;
+          withLevelTracking(function () { return engine.completeUnit(moduleId, unitId, xp); });
+          markLessonDoneTag(block, lsn.title);
+        }
+        holder.querySelector(".story-restart").addEventListener("click", function () { renderNode(lsn.start); });
+        return;
+      }
+      var html = '<div class="story-text">' + E.esc(node.text) + '</div><div class="story-choices"></div>';
+      holder.innerHTML = html;
+      var choicesEl = holder.querySelector(".story-choices");
+      node.choices.forEach(function (ch) {
+        var btn = E.el("button", "choice-btn", E.esc(ch.text));
+        btn.addEventListener("click", function () { renderNode(ch.next); });
+        choicesEl.appendChild(btn);
+      });
+    }
+    renderNode(lsn.start);
+    if (alreadyDone) markLessonDoneTag(block, lsn.title);
+  };
+
+  LESSON_RENDERERS.quiz = function (moduleId, lsn, block) {
+    var perQ = lsn.questions.length ? Math.round((lsn.xp || 0) / lsn.questions.length) : 0;
+    var html = "<h3>" + E.esc(lsn.title) + '</h3>';
+    block.innerHTML = html;
+    var allAnswered = true;
+    lsn.questions.forEach(function (q, qi) {
+      var unitId = lsn.id + "#" + qi;
+      var done = engine.isUnitDone(moduleId, unitId);
+      if (!done) allAnswered = false;
+      var qBlock = E.el("div", "quiz-q",
+        '<div class="quiz-situation">' + E.esc(q.q) + '</div>' +
+        '<div class="quiz-options"></div>' +
+        '<div class="quiz-feedback"><span class="txt"></span></div>');
+      var optWrap = qBlock.querySelector(".quiz-options");
+      var fb = qBlock.querySelector(".quiz-feedback");
+      q.options.forEach(function (opt, oi) {
+        var btn = E.el("button", "option-btn", E.esc(opt.t));
+        btn.addEventListener("click", function () {
+          if (engine.isUnitDone(moduleId, unitId)) return;
+          var xp = opt.correct ? perQ : 0;
+          withLevelTracking(function () { return engine.completeUnit(moduleId, unitId, xp); });
+          revealAnswer(q, optWrap, fb, oi);
+          checkAllAnswered();
+        });
+        optWrap.appendChild(btn);
+      });
+      if (done) revealAnswer(q, optWrap, fb, -1);
+      block.appendChild(qBlock);
+    });
+    function revealAnswer(q, optWrap, fb, chosenIdx) {
+      E.qsa(".option-btn", optWrap).forEach(function (b, i) {
+        b.disabled = true;
+        if (q.options[i].correct) b.classList.add("correct");
+        else if (i === chosenIdx) b.classList.add("incorrect");
+      });
+      var fbText = chosenIdx >= 0 ? q.options[chosenIdx].fb : "Már válaszoltál erre a kérdésre.";
+      fb.classList.add("show");
+      fb.querySelector(".txt").textContent = fbText;
+    }
+    function checkAllAnswered() {
+      var all = lsn.questions.every(function (_, i) { return engine.isUnitDone(moduleId, lsn.id + "#" + i); });
+      if (all) markLessonDoneTag(block, lsn.title);
+    }
+    if (allAnswered) markLessonDoneTag(block, lsn.title);
+  };
+})();
+</script>
+</body>
+</html>

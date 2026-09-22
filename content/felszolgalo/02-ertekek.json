@@ -1,0 +1,28 @@
+{
+  "id": "02-ertekek",
+  "title": "A 13 alapérték",
+  "intro": "Ez nem egy lista, amit be kell magolnod. Olvasd úgy, mintha rólad szólna — mert a pályán tényleg rólad fog szólni. Lapozz végig mind a 13-on.",
+  "lessons": [
+    {
+      "id": "02-01-credo",
+      "type": "creed-cards",
+      "title": "A 13 alapérték — a te szavaiddal",
+      "cards": [
+        { "num": 1, "name": "Pozitivitás", "credo": "Pozitív vagyok, mert tudom, hogy amit hordozok, az átragad a csapatra és a vendégre is. Nem azért mosolygok, mert mindig jó napom van — azért, mert a hozzáállásom erőt ad, nemcsak nekem.", "xp": 5 },
+        { "num": 2, "name": "Becsület és becsületesség", "credo": "Becsületes vagyok magammal, mert a Rumpusban nem a leleplezéstől félünk — attól, hogy hazudunk saját magunknak. Ha hibázom, előbb magamnak vallom be, aztán annak, akinek kell.", "xp": 5 },
+        { "num": 3, "name": "Pontosság és precizitás", "credo": "Pontos vagyok, mert a részletek adják a színvonalat, amit a vendég érez, még ha nem is tudja megnevezni. A legmagasabb szintre törekszem — nem azért, mert elvárják, hanem mert ez az én mércém.", "xp": 5 },
+        { "num": 4, "name": "Problémamegoldás", "credo": "Problémamegoldó vagyok, mert a pályán minden műszak hoz valami váratlant. Nem a probléma mérete számít, hanem hogy meg merem-e oldani — vagy tudom, kihez forduljak, ha nem az én hatásköröm.", "xp": 5 },
+        { "num": 5, "name": "Lojalitás", "credo": "Hűséges vagyok a csapatomhoz, mert az egység erősebbé tesz minket, mint bármelyik belső konfliktus. A belső ügyeinket nem a vendégtérben rendezzük.", "xp": 5 },
+        { "num": 6, "name": "Kitartóság és céltudatosság", "credo": "Kitartó vagyok, mert tudom, hogy egy fárasztó este is csak egy műszak — nem az egész történet. A célom világos, és kitartok mellette, még akkor is, ha lassulnék.", "xp": 5 },
+        { "num": 7, "name": "Emberi kapcsolatok", "credo": "Fontosak nekem az emberi kapcsolatok, mert a Rumpus nem működne csapat nélkül. A vendéggel is kapcsolódom, nem csak kiszolgálom — és ez ugyanígy igaz a kollégáimra is.", "xp": 5 },
+        { "num": 8, "name": "Bajtársiasság és támogatás", "credo": "Bajtárs vagyok, mert amikor elhaladok valami mellett, ami koszos, nem az számít, kinek a feladata volt. Egymás hátát védjük.", "xp": 5 },
+        { "num": 9, "name": "Felejthetetlen élményadás", "credo": "Élményt adok, mert azt akarom, hogy amikor valaki kilép a Rumpusból, magával vigyen valamit, amit nem felejt el. És közben én magam is örülök annak, amit csinálok.", "xp": 5 },
+        { "num": 10, "name": "Maximalizmus", "credo": "Maximalista vagyok, mert az apró, láthatatlan részletek — egy letörölt morzsa, egy pontosan visszaadott váltó — döntik el, hogy valaki visszajön-e. Sosem mondom, hogy „úgyse veszi észre”.", "xp": 5 },
+        { "num": 11, "name": "Fejlődés", "credo": "Fejlődni akarok, mert ha valamit nem tudok, azt mondom: „mindjárt megnézem” — sosem azt, hogy „nem tudom”. Utánajárok, és legközelebb már tudom.", "xp": 5 },
+        { "num": 12, "name": "Számíthatóság", "credo": "Számítani lehet rám, mert ha valami közbejön, időben szólok — nem azért, mert muszáj, hanem mert tudom, hogy a csapatom rám épít.", "xp": 5 },
+        { "num": 13, "name": "Anyagi stabilitás", "credo": "Fontos nekem az anyagi stabilitás, mert a jó munkám megéri — nekem, a vendégnek és a Rumpusnak is. A jó ajánlás nem tukmálás: a jó service természetes folytatása.", "xp": 5 }
+      ],
+      "outro": "13 alapérték, egy hangon: a tiéden. Ezekre fogsz visszaemlékezni, amikor a pályán döntened kell — a következő modulban pont ez fog történni."
+    }
+  ]
+}

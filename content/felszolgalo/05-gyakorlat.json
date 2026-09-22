@@ -1,0 +1,116 @@
+{
+  "id": "05-gyakorlat",
+  "title": "A pálya",
+  "intro": "Ez a rész a kezedről szól, nem csak a fejedről. Minden alszekcióhoz tartozik majd egy rövid videó is — most placeholder van a helyén, a szöveg viszont már éles anyag.",
+  "lessons": [
+    {
+      "id": "05-01-asztal",
+      "type": "checklist-video",
+      "title": "Asztal-előkészítés és terítés",
+      "xp": 10,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: asztal megterítése lépésről lépésre — szalvéta, evőeszköz, dekor elhelyezése."
+      },
+      "paragraphs": [
+        "A vendégtérnek úgy kell kinéznie minden pillanatban, mintha ma még senki nem ült volna ott."
+      ],
+      "checklist": [
+        "Ital- és koktéllapok áttörlése fertőtlenítővel, a sérültek selejtezése",
+        "Vendégtér berendezése, felsöprése, ha kell takarítása",
+        "Üvegfelületek, pókháló mentesítés",
+        "Hűtők töltöttségének ellenőrzése",
+        "Mécsesek előkészítése, nyitás előtti utolsó lépésként meggyújtása",
+        "Dekor letételekor minden koktélt érthetően nevezz meg, és mondd el, ki kérte",
+        "A kerámia tiki mugokat asztalszám szerint kötelező nyomon követni"
+      ]
+    },
+    {
+      "id": "05-02-clearing",
+      "type": "checklist-video",
+      "title": "Clearing",
+      "xp": 10,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: clearing technika — mikor és hogyan szedjük le a dekort, tálcahasználat."
+      },
+      "paragraphs": [
+        "Amelyik dekorról lekerültek az italok és már elszublimált a szárazjég, azt minél előbb le kell szedni. A cél egy karibi paradicsom, nem egy lerakat — ez minden vendégre hat, nemcsak az adott asztal komfortérzetére."
+      ],
+      "checklist": [
+        "Üres dekor + elszublimált szárazjég azonnali leszedése",
+        "Dekor levételekor rákérdezni: ízlik-e az ital",
+        "Fizetés után az asztal visszaállítása alaphelyzetbe: tiszta, száraz, székek a helyükön"
+      ]
+    },
+    {
+      "id": "05-03-higienia",
+      "type": "checklist-video",
+      "title": "Higiénia és megjelenés",
+      "xp": 10,
+      "quote": "Nálunk az illat az egyenruha része.",
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: megjelenés-standard bemutatása — rövid, kimondottan nem szégyenlős hangvétellel."
+      },
+      "paragraphs": [
+        "Ezt kimondjuk, nem szégyenkezve. Ez nem személyes sértés — ez a szint. Ha ez nincs meg, nem tudunk együtt dolgozni."
+      ],
+      "checklist": [
+        "Munkaruha mindig tiszta — legyen váltás a szekrényben",
+        "Dezodor, parfüm — ha leizzadtál, gyors frissítés",
+        "Ha valakin érzitek, szóljatok neki — ez segítség, nem sértés",
+        "Cigi vagy vacsora után rágó (a mentát gumikesztyűben érdemes szedni)"
+      ]
+    },
+    {
+      "id": "05-04-nyitas-zaras",
+      "type": "checklist-video",
+      "title": "Nyitás és zárás rituáléja",
+      "xp": 10,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: teljes nyitási rutin gyorsított összefoglalója (time-lapse)."
+      },
+      "paragraphs": [
+        "A Rumpus működésének minden folyamata lazaságba csomagolt profizmust sugall — a nyitást és a zárást is beleértve.",
+        "A napfény a legnagyobb kritikusunk: nappal minden foltnak, pókhálónak sokkal jobban ki kell tűnnie, mint este."
+      ],
+      "checklist": [
+        "Nyitás: érkezés, azonnali átöltözés, jelenléti ív",
+        "Nyitás: itallapok tisztítása, vendégtér és külső terek visszaállítása az esti fotó alapján",
+        "Nyitás utolsó lépése: gyertyák meggyújtása, majd 5–10 perces fókuszállító meeting",
+        "Zárás: utolsó körök úgy, hogy elfogyasztásra minimum 30 perc maradjon",
+        "Zárás: pálya söprése, felmosása, mécsescsere, hűtők feltöltése (FIFO elv)",
+        "Zárás: ha kollégádnál még tart, segíts — együtt jöttünk, együtt megyünk"
+      ]
+    },
+    {
+      "id": "05-05-checkpoint",
+      "type": "quiz",
+      "xp": 15,
+      "title": "Gyors ellenőrzés",
+      "questions": [
+        {
+          "q": "Egyszerre több dolog várna rád: új vendég lép be, egy elkészült ital vár felszolgálásra, egy asztal pedig fizetne. Mi jön elsőként?",
+          "options": [
+            { "t": "A vendég köszöntése — utána az elkészült ital, majd a fizettetés.", "correct": true, "fb": "A feladatok prioritási sorrendje: vendég köszöntése → elkészült italok felszolgálása → rendelésfelvétel → fizettetés." },
+            { "t": "A fizettetés — az asztalnak minél előbb fel kell szabadulnia.", "correct": false, "fb": "A belépő vendég köszöntése mindig előrébb való." },
+            { "t": "Az elkészült ital — az hidegszik, az nem várhat.", "correct": false, "fb": "Egy pillanatnyi Aloha nem tart tovább pár másodpercnél — nem hagyhatod köszöntés nélkül a belépőt." }
+          ]
+        },
+        {
+          "q": "Ha valakin érzed, hogy elkelne egy frissítés, mit teszel?",
+          "options": [
+            { "t": "Szólsz neki halkan — ez segítség, nem sértés.", "correct": true, "fb": "Pontosan — még mindig jobb, mintha a vendég jegyezné meg." },
+            { "t": "Nem szólsz, kínos lenne.", "correct": false, "fb": "A higiénia standard, nem személyes vélemény — a kollégáid felé is ez a dolgod." }
+          ]
+        }
+      ]
+    }
+  ]
+}
