@@ -206,7 +206,7 @@
       var unlocked = engine.isModuleUnlocked(m.id);
       var done = pct >= 100;
       var side = i % 2 === 0 ? "left" : "right";
-      html += '<div class="path-node' + (unlocked ? "" : " locked") + (done ? " done" : "") + '" data-side="' + side + '" data-module="' + m.id + '">' +
+      html += '<div class="path-node' + (unlocked ? "" : " locked") + (done ? " done" : "") + '" data-side="' + side + '" data-module="' + m.id + '" tabindex="0" role="button" aria-label="' + E.esc(m.title) + (unlocked ? "" : " — zárolva") + '">' +
         '<div class="node-ring" style="--pct:' + pct + '"><span class="node-icon">' + (done ? "✓" : (unlocked ? ordinal(i) : LOCK_SVG)) + '</span></div>' +
         '<div class="node-label"><span class="node-title">' + E.esc(m.title) + '</span>' +
         '<span class="node-sub">' + E.esc(m.subtitle || "") + '</span>' +
@@ -216,7 +216,7 @@
     html += "</div>";
     pathEl.innerHTML = html;
     E.qsa(".path-node", pathEl).forEach(function (node) {
-      node.addEventListener("click", function () {
+      function activate() {
         var id = node.getAttribute("data-module");
         if (engine.isModuleUnlocked(id)) openModule(id);
         else {
@@ -225,6 +225,10 @@
             { duration: 220 }
           );
         }
+      }
+      node.addEventListener("click", activate);
+      node.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
       });
     });
   }

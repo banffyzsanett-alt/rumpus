@@ -1,4 +1,10 @@
 /* Rumpus Onboarding Engine — vizuális réteg. Pozíciófüggetlen. */
+@font-face{
+  font-family:"RumpusDisplay";
+  src:url("./fonts/RumpusDisplay-Regular.otf") format("opentype");
+  font-display:swap;
+  font-weight:400;
+}
 :root{
   --bg:#160f0a;
   --bg-2:#1e140d;
@@ -32,8 +38,9 @@ body{
   padding-bottom:40px;
 }
 h1,h2,h3{
-  font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;
-  font-weight:700;
+  font-family:"RumpusDisplay",Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-weight:400;
+  letter-spacing:0.01em;
   margin:0 0 12px;
   color:#fff8ec;
 }
@@ -93,7 +100,7 @@ button{font-family:inherit;}
 .cta:active{transform:translateY(1px);}
 .celebration-stats{display:flex;justify-content:center;gap:22px;margin-bottom:26px;}
 .cstat{display:flex;flex-direction:column;align-items:center;}
-.cstat strong{font-size:22px;font-weight:800;color:var(--amber);font-family:Georgia,serif;}
+.cstat strong{font-size:24px;font-weight:400;color:var(--amber);font-family:"RumpusDisplay",Georgia,serif;}
 .cstat span{font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-faint);margin-top:3px;}
 
 /* -------- app shell fade-in -------- */
@@ -116,6 +123,7 @@ button{font-family:inherit;}
 /* -------- header -------- */
 #topbar{
   position:sticky;top:0;z-index:40;
+  padding-top:env(safe-area-inset-top, 0px);
   background:rgba(20,13,8,0.9);backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(232,161,58,0.18);
 }
@@ -123,7 +131,7 @@ button{font-family:inherit;}
   max-width:var(--maxw);margin:0 auto;padding:10px 18px;
   display:flex;align-items:center;gap:10px;
 }
-.brandmark{font-family:Georgia,serif;font-weight:700;color:#fff8ec;font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.brandmark{font-family:"RumpusDisplay",Georgia,serif;font-weight:400;letter-spacing:0.015em;color:#fff8ec;font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .stat-pill{
   display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;
   padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.05);
@@ -310,4 +318,21 @@ button{font-family:inherit;}
 @media (min-width:600px){
   .path-node[data-side="right"]{margin-left:22%;}
   .path-node[data-side="left"]{margin-right:22%;}
+}
+
+/* -------- kattintható/billentyűzet elemek: látható fókusz -------- */
+button:focus-visible, input:focus-visible, .path-node:focus-visible{
+  outline:2px solid var(--amber);outline-offset:2px;
+}
+.path-node{outline:none;}
+button{-webkit-tap-highlight-color:transparent;}
+
+/* -------- mozgáscsökkentés tiszteletben tartása -------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
 }
