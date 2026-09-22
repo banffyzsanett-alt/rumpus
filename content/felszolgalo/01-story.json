@@ -9,9 +9,9 @@
       "xp": 5,
       "title": "Nem egy tervasztalon született",
       "image": {
-        "placeholder": true,
-        "alt": "Rumpus Tiki Bar enteriőr — Király utca",
-        "note": "KÉP HELYE: Rumpus belső tér, Donn Beach előtér vagy a bárpult. Zsanett tud adni valós fotót."
+        "placeholder": false,
+        "src": "images/story-hero.jpg",
+        "alt": "Tiki mugok, szárazjég-füst és egy megosztott pillanat a Rumpus asztalánál"
       },
       "paragraphs": [
         "A Rumpus nem egy franchise-koncepcióként született. Bánfi Beáta, azaz Tiki Mamma egyszerűen elkezdte felépíteni azt a helyet, amit ő maga is keresett.",

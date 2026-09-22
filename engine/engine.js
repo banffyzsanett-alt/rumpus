@@ -71,7 +71,7 @@
   }
 
   Engine.prototype._loadState = function () {
-    var defaults = { xp: 0, streak: { lastActiveDate: null, count: 0 }, modules: {} };
+    var defaults = { xp: 0, streak: { lastActiveDate: null, count: 0 }, modules: {}, name: "", celebrated: false };
     try {
       var raw = localStorage.getItem(this.storageKey);
       if (raw) {
@@ -80,6 +80,8 @@
           defaults.xp = parsed.xp || 0;
           defaults.streak = parsed.streak || defaults.streak;
           defaults.modules = parsed.modules || {};
+          defaults.name = parsed.name || "";
+          defaults.celebrated = !!parsed.celebrated;
         }
       }
     } catch (e) { /* private mode / blocked storage: fall back to in-memory defaults */ }
@@ -197,6 +199,14 @@
 
   Engine.prototype.streakCount = function () { return this.state.streak.count || 0; };
   Engine.prototype.totalXp = function () { return this.state.xp || 0; };
+
+  Engine.prototype.getName = function () { return this.state.name || ""; };
+  Engine.prototype.setName = function (name) { this.state.name = String(name || "").trim(); this._save(); };
+
+  /** Az ünneplő záróképernyőt csak egyszer mutatjuk meg, amikor a user
+   *  először éri el a 100%-ot — utána ez a jelző emlékezteti erre. */
+  Engine.prototype.isCelebrated = function () { return !!this.state.celebrated; };
+  Engine.prototype.markCelebrated = function () { this.state.celebrated = true; this._save(); };
 
   // -- PHASE 2 HOOK (inert a pilotban) ---------------------------------
   // Amikor több felhasználó lesz (csapatos rollout, negyedéves

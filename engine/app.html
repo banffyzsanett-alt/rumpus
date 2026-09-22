@@ -8,22 +8,51 @@
 </head>
 <body>
 
-<div id="topbar">
-  <div class="row">
-    <div class="brandmark" id="brandmark">Rumpus Onboarding</div>
-    <div class="stat-pill streak zero" id="streakpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c1 4-3 5-3 9a3 3 0 006 0c0-1.5-1-2-1-3.5 2 1 3 3.5 3 5.5a5 5 0 01-10 0C7 8 10 6 12 2z"/></svg> <span id="streaknum">0</span></div>
-    <div class="stat-pill xp" id="xppill">0 XP</div>
-    <div class="stat-pill team" id="teampill" title="A csapatos nézet a 2. fázisban érkezik">Csapat · hamarosan</div>
+<section id="splash" hidden>
+  <div class="splash-bg" style="background-image:url('./images/splash-tiki.jpg')"></div>
+  <div class="splash-overlay"></div>
+  <div class="splash-content">
+    <svg class="splash-glass" width="34" height="34" viewBox="0 0 352 352" fill="none"><path d="M58.6641 43.5786V52.8186L87.9974 56.1919L58.6641 60.7386V168.539L124.077 233.952H161.331V293.352H102.664V322.685H249.331V311.245L223.371 308.459L249.331 305.085V293.352H190.664V233.952H227.917L293.331 168.539V43.5786H58.6641ZM263.997 156.512L215.744 204.765H136.104L87.8507 156.512H87.9974V138.765H263.997V156.512ZM263.997 109.285H87.9974V72.9119H263.997V109.285Z" fill="currentColor"/></svg>
+    <div class="eyebrow">Rumpus Tiki Bar &amp; Kitchen</div>
+    <h1>Nem egy céget ismersz meg most.<br>Egy <em>világot</em>, aminek a része leszel.</h1>
+    <p>Mielőtt elkezdenéd: hogy szólítsunk a folyamán?</p>
+    <div class="namegate">
+      <input type="text" id="staffname" placeholder="A keresztneved" maxlength="30" autocomplete="given-name">
+      <button class="cta" id="startbtn" type="button">Kezdjük ✻</button>
+    </div>
   </div>
-</div>
-<div id="levelbadge" hidden></div>
+</section>
 
-<main class="wrap">
-  <section id="path"></section>
-  <section id="moduleview" hidden></section>
-</main>
+<div id="appshell" hidden>
+  <div id="topbar">
+    <div class="row">
+      <div class="brandmark" id="brandmark">Rumpus Onboarding</div>
+      <div class="stat-pill streak zero" id="streakpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c1 4-3 5-3 9a3 3 0 006 0c0-1.5-1-2-1-3.5 2 1 3 3.5 3 5.5a5 5 0 01-10 0C7 8 10 6 12 2z"/></svg> <span id="streaknum">0</span></div>
+      <div class="stat-pill xp" id="xppill">0 XP</div>
+      <div class="stat-pill team" id="teampill" title="A csapatos nézet a 2. fázisban érkezik">Csapat · hamarosan</div>
+    </div>
+  </div>
+  <div id="levelbadge" hidden></div>
+
+  <main class="wrap">
+    <section id="path"></section>
+    <section id="moduleview" hidden></section>
+  </main>
+</div>
 
 <div id="leveltoast"></div>
+
+<section id="celebration" hidden>
+  <div class="splash-bg" style="background-image:url('./images/splash-tiki.jpg')"></div>
+  <div class="splash-overlay"></div>
+  <div class="splash-content">
+    <div class="eyebrow">Rumpus-készültség — 100%</div>
+    <h1 id="celebration-title">Innentől a családhoz tartozol.</h1>
+    <p>Nem egy vizsgát fejeztél be. Azt mutattad meg, hogy készen állsz arra, hogy a pályán is így dolgozz — figyelmesen, magabiztosan, Rumpus-módra.</p>
+    <div class="celebration-stats" id="celebration-stats"></div>
+    <button class="cta" id="celebration-close" type="button">Irány a pálya ✻</button>
+  </div>
+</section>
 
 <script src="./engine.js"></script>
 <script>
@@ -52,6 +81,35 @@
   var levelbadge = document.getElementById("levelbadge");
   var brandmark = document.getElementById("brandmark");
   var leveltoast = document.getElementById("leveltoast");
+  var splashEl = document.getElementById("splash");
+  var appshellEl = document.getElementById("appshell");
+  var celebrationEl = document.getElementById("celebration");
+
+  // ---------------------------------------------------------------
+  // Belépő képernyő + megszólítás
+  // ---------------------------------------------------------------
+  var metaReady = false;
+  var splashDone = !!engine.getName();
+
+  function tryRenderPath() {
+    if (metaReady && splashDone) { appshellEl.hidden = false; updateHeader(false); renderPath(); }
+  }
+
+  if (!splashDone) {
+    splashEl.hidden = false;
+    var nameInput = document.getElementById("staffname");
+    var startBtn = document.getElementById("startbtn");
+    startBtn.addEventListener("click", function () {
+      var n = nameInput.value.trim();
+      if (!n) { nameInput.focus(); nameInput.classList.add("error"); return; }
+      engine.setName(n);
+      splashDone = true;
+      splashEl.classList.add("fade-out");
+      setTimeout(function () { splashEl.hidden = true; }, 420);
+      tryRenderPath();
+    });
+    nameInput.addEventListener("keydown", function (e) { if (e.key === "Enter") startBtn.click(); });
+  }
 
   function updateHeader(pulseXp) {
     xppill.textContent = engine.totalXp() + " XP";
@@ -80,12 +138,31 @@
     }
   }
 
+  function maybeShowCelebration() {
+    if (engine.overallPercent() >= 100 && !engine.isCelebrated()) {
+      engine.markCelebrated();
+      var name = engine.getName();
+      document.getElementById("celebration-title").textContent = name ? "Szia, " + name + "! Innentől a családhoz tartozol." : "Innentől a családhoz tartozol.";
+      document.getElementById("celebration-stats").innerHTML =
+        '<div class="cstat"><strong>' + engine.totalXp() + '</strong><span>XP összesen</span></div>' +
+        '<div class="cstat"><strong>' + engine.streakCount() + '</strong><span>napos sorozat</span></div>' +
+        '<div class="cstat"><strong>' + engine.modulesMeta.modules.length + ' / ' + engine.modulesMeta.modules.length + '</strong><span>modul kész</span></div>';
+      celebrationEl.hidden = false;
+      requestAnimationFrame(function () { celebrationEl.classList.add("show"); });
+    }
+  }
+
   function withLevelTracking(fn) {
     var prev = engine.levelLabel();
     var changed = fn();
-    if (changed) { updateHeader(true); maybeShowLevelUp(prev); }
+    if (changed) { updateHeader(true); maybeShowLevelUp(prev); maybeShowCelebration(); }
     return changed;
   }
+
+  document.getElementById("celebration-close").addEventListener("click", function () {
+    celebrationEl.classList.remove("show");
+    setTimeout(function () { celebrationEl.hidden = true; }, 350);
+  });
 
   // ---------------------------------------------------------------
   // Betöltés
@@ -104,10 +181,11 @@
       return Promise.all(loads);
     })
     .then(function () {
-      updateHeader(false);
-      renderPath();
+      metaReady = true;
+      tryRenderPath();
     })
     .catch(function (err) {
+      appshellEl.hidden = false;
       pathEl.innerHTML = '<div class="locked-msg">Nem sikerült betölteni a tartalmat.<br>Ha ezt a fájlt közvetlenül (file://) nyitottad meg, indíts helyette egy egyszerű helyi szervert, vagy nyisd meg a publikált (https) linken.<br><br><small>' + E.esc(err.message || err) + '</small></div>';
     });
 
@@ -118,7 +196,9 @@
 
   function renderPath() {
     var meta = engine.modulesMeta;
-    var html = '<div class="path-intro"><h1>' + E.esc(meta.positionLabel || "") + '</h1>' +
+    var name = engine.getName();
+    var greeting = name ? "Szia, " + E.esc(name) + "!" : E.esc(meta.positionLabel || "");
+    var html = '<div class="path-intro"><div class="path-eyebrow">RUMPUS · ' + E.esc(meta.positionLabel || "") + ' ÚT</div><h1>' + greeting + '</h1>' +
       '<p>Haladj végig az úton. Egy modult csak akkor tudsz megnyitni, ha az előzőt 100%-ra vitted.</p></div>' +
       '<div class="path-track">';
     meta.modules.forEach(function (m, i) {
@@ -201,8 +281,12 @@
 
   LESSON_RENDERERS.read = function (moduleId, lsn, block) {
     var html = "<h3>" + E.esc(lsn.title) + "</h3>";
-    if (lsn.image && lsn.image.placeholder) {
-      html += '<div class="video-placeholder-note">' + E.esc(lsn.image.note || "Kép helye") + '</div>';
+    if (lsn.image) {
+      if (lsn.image.placeholder) {
+        html += '<div class="video-placeholder-note">' + E.esc(lsn.image.note || "Kép helye") + '</div>';
+      } else if (lsn.image.src) {
+        html += '<div class="hero-image"><img src="' + E.esc(basePath + lsn.image.src) + '" alt="' + E.esc(lsn.image.alt || "") + '" loading="lazy"></div>';
+      }
     }
     if (lsn.quote) html += '<div class="quote-block">„' + E.esc(lsn.quote) + '”</div>';
     (lsn.paragraphs || []).forEach(function (p) { html += "<p>" + E.esc(p) + "</p>"; });
