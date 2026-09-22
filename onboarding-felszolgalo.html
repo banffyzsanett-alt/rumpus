@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Rumpus Onboarding — Felszolgáló</title>
+<style>
+  :root{
+    --bg:#160f0a;
+    --bg-2:#1e140d;
+    --bg-3:#251a10;
+    --card:rgba(255,236,204,0.045);
+    --card-border:rgba(232,161,58,0.22);
+    --amber:#e8a13a;
+    --amber-soft:#d9a95f;
+    --coral:#ff6d4d;
+    --teal:#3c8a76;
+    --danger:#c1493d;
+    --text:#f4e9d8;
+    --text-dim:#c9b8a0;
+    --text-faint:#8f7c66;
+    --radius:18px;
+    --maxw:640px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(232,161,58,0.10), transparent 55%),
+      radial-gradient(ellipse at 90% 10%, rgba(255,109,77,0.07), transparent 45%),
+      var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-weight:700;
+    letter-spacing:0.01em;
+    margin:0 0 14px;
+    color:#fff8ec;
+  }
+  p{margin:0 0 14px;color:var(--text-dim);}
+  a{color:var(--amber);}
+  strong{color:var(--text);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+  /* ---------- progress bar ---------- */
+  #progressbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(20,13,8,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(232,161,58,0.18);
+  }
+  #progressbar .track{height:3px;background:rgba(255,255,255,0.06);position:relative;}
+  #progressbar .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--coral),var(--amber));transition:width .4s ease;}
+  #progressbar .label{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 16px;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint);
+  }
+  #progressbar .label .current-title{color:var(--amber-soft);font-weight:600;max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---------- splash ---------- */
+  .splash{
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:90px 24px 60px;
+    position:relative;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,109,77,0.14), transparent 60%),
+      linear-gradient(180deg, var(--bg-2), var(--bg));
+    text-align:center;
+  }
+  .splash .leaf{margin:0 auto 22px;opacity:0.85;}
+  .splash .eyebrow{
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber-soft);
+    margin-bottom:18px;font-weight:600;
+  }
+  .splash h1{font-size:30px;line-height:1.28;color:#fff8ec;margin-bottom:18px;}
+  .splash h1 em{font-style:normal;color:var(--amber);}
+  .splash p{font-size:16px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .strip{
+    margin-top:28px;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .strip span{margin:0 6px;}
+  .cta{
+    margin-top:34px;display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(90deg,var(--coral),var(--amber));
+    color:#1b1006;font-weight:700;font-size:16px;
+    padding:15px 30px;border-radius:999px;border:none;cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,109,77,0.25);
+    align-self:center;
+  }
+  .cta:active{transform:translateY(1px);}
+  .scrolldown{margin-top:40px;font-size:12px;color:var(--text-faint);letter-spacing:0.08em;}
+
+  /* ---------- sections ---------- */
+  .section{
+    padding:64px 0 40px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    position:relative;
+  }
+  .badge-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .badge{
+    font-size:11px;letter-spacing:0.09em;text-transform:uppercase;font-weight:700;
+    padding:5px 11px;border-radius:999px;border:1px solid transparent;
+  }
+  .badge.trunk{background:rgba(60,138,118,0.16);color:#7fd0b8;border-color:rgba(60,138,118,0.35);}
+  .badge.role{background:rgba(255,109,77,0.14);color:#ffab8f;border-color:rgba(255,109,77,0.32);}
+  .section-num{
+    font-size:12px;color:var(--text-faint);letter-spacing:0.1em;margin-bottom:8px;text-transform:uppercase;
+  }
+  .section h2{font-size:24px;}
+  .lead{font-size:16.5px;color:var(--text-dim);}
+
+  .quote-block{
+    margin:22px 0;padding:18px 20px;border-left:3px solid var(--amber);
+    background:rgba(232,161,58,0.06);border-radius:0 12px 12px 0;
+    font-family:Georgia,serif;font-style:italic;color:#ffe9c4;font-size:16px;
+  }
+  .callout{
+    margin:22px 0;padding:18px 20px;border-radius:var(--radius);
+    background:var(--card);border:1px solid var(--card-border);
+  }
+  .callout.warn{border-color:rgba(193,73,61,0.4);background:rgba(193,73,61,0.08);}
+  .callout h3{font-size:15px;color:var(--amber-soft);margin-bottom:8px;}
+
+  .timeline{margin:26px 0;}
+  .timeline-item{display:flex;gap:16px;padding:14px 0;border-top:1px solid rgba(255,255,255,0.06);}
+  .timeline-item:first-child{border-top:none;}
+  .timeline-year{
+    flex:0 0 64px;font-weight:800;color:var(--amber);font-size:15px;padding-top:2px;
+  }
+  .timeline-text strong{display:block;color:#fff8ec;margin-bottom:2px;font-size:14.5px;}
+  .timeline-text p{margin:0;font-size:14.5px;}
+
+  .checklist{list-style:none;margin:18px 0;padding:0;}
+  .checklist li{
+    display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.06);font-size:15px;color:var(--text-dim);
+  }
+  .checklist li:first-child{border-top:none;}
+  .checklist li::before{content:"○";color:var(--amber);flex:0 0 auto;}
+
+  .subhead{
+    font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);
+    font-weight:700;margin:30px 0 10px;
+  }
+
+  /* ---------- quiz cards ---------- */
+  .quiz-card{
+    margin:20px 0;padding:20px;border-radius:var(--radius);
+    background:var(--card);border:1px solid var(--card-border);
+  }
+  .quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .quiz-num{
+    flex:0 0 30px;height:30px;border-radius:50%;background:rgba(232,161,58,0.16);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--amber);
+  }
+  .quiz-value{font-weight:700;color:#fff8ec;font-size:14.5px;}
+  .quiz-situation{font-size:15.5px;color:var(--text);margin-bottom:14px;}
+  .quiz-options{display:flex;flex-direction:column;gap:8px;}
+  .option-btn{
+    text-align:left;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);
+    color:var(--text-dim);padding:12px 14px;border-radius:12px;font-size:14.5px;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .option-btn:active{transform:scale(0.99);}
+  .option-btn.correct{background:rgba(60,138,118,0.18);border-color:var(--teal);color:#d3f2e6;}
+  .option-btn.incorrect{background:rgba(193,73,61,0.14);border-color:var(--danger);color:#f3d3ce;}
+  .option-btn[disabled]{cursor:default;}
+  .quiz-feedback{
+    margin-top:14px;padding:13px 15px;border-radius:12px;font-size:14.5px;display:none;
+    background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.08);color:var(--text);
+  }
+  .quiz-feedback.show{display:block;}
+  .quiz-feedback .tag{font-weight:800;letter-spacing:0.04em;text-transform:uppercase;font-size:11.5px;display:block;margin-bottom:5px;}
+  .quiz-feedback.good .tag{color:#7fd0b8;}
+  .quiz-feedback.bad .tag{color:#ff9d8c;}
+
+  /* ---------- flip cards ---------- */
+  .flip-card{
+    margin:16px 0;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--card-border);background:var(--card);cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .flip-front{padding:18px 20px;}
+  .flip-tag{
+    display:inline-block;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;
+    color:#ff9d8c;background:rgba(193,73,61,0.16);border:1px solid rgba(193,73,61,0.35);
+    padding:3px 9px;border-radius:999px;margin-bottom:10px;font-weight:800;
+  }
+  .flip-front .phrase{font-size:16.5px;color:#fff8ec;font-style:italic;font-family:Georgia,serif;}
+  .flip-hint{margin-top:12px;font-size:12.5px;color:var(--text-faint);letter-spacing:0.03em;}
+  .flip-back{
+    padding:0 20px 18px;display:none;
+  }
+  .flip-back.show{display:block;animation:fadein .25s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+  .flip-back .good-tag{
+    display:inline-block;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;
+    color:#7fd0b8;background:rgba(60,138,118,0.16);border:1px solid rgba(60,138,118,0.35);
+    padding:3px 9px;border-radius:999px;margin-bottom:9px;font-weight:800;
+  }
+  .flip-back .phrase{font-size:15.5px;color:#e9f7f0;font-style:italic;font-family:Georgia,serif;margin-bottom:8px;}
+  .flip-back .why{font-size:13.5px;color:var(--text-dim);}
+
+  .wordcloud{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0;}
+  .wordcloud span{
+    font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(232,161,58,0.1);
+    border:1px solid rgba(232,161,58,0.25);color:var(--amber-soft);
+  }
+
+  .divider{
+    display:flex;align-items:center;gap:10px;margin:8px 0 0;opacity:0.5;
+  }
+  .divider svg{flex:0 0 auto;}
+
+  /* ---------- closing ---------- */
+  .closing{background:linear-gradient(180deg, var(--bg), var(--bg-3));}
+  .test-block{
+    margin-top:28px;padding:22px;border-radius:var(--radius);
+    border:1.5px dashed rgba(232,161,58,0.4);background:rgba(232,161,58,0.05);
+  }
+  .test-block h3{color:var(--amber);font-size:16px;margin-bottom:8px;}
+  .test-block .field{
+    margin-top:14px;display:flex;align-items:center;gap:8px;
+    background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.1);
+    border-radius:12px;padding:13px 14px;
+  }
+  .test-block .field span{font-size:13.5px;color:var(--text-faint);}
+  .final-line{
+    margin-top:34px;font-family:Georgia,serif;font-style:italic;font-size:19px;color:#ffe9c4;
+    text-align:center;
+  }
+  footer.end{padding:40px 20px 70px;text-align:center;font-size:12px;color:var(--text-faint);letter-spacing:0.06em;}
+
+  @media (min-width:600px){
+    .splash h1{font-size:36px;}
+    .section h2{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progressbar">
+  <div class="track"><div class="fill" id="progressfill"></div></div>
+  <div class="label"><span id="progresscount">0 / 9 szakasz</span><span class="current-title" id="progresstitle"></span></div>
+</div>
+
+<!-- ========================= SPLASH ========================= -->
+<section class="splash">
+  <svg class="leaf" width="46" height="46" viewBox="0 0 46 46" fill="none">
+    <path d="M23 43C23 43 8 36 8 20C8 10 15 4 23 4C31 4 38 10 38 20C38 36 23 43 23 43Z" stroke="#e8a13a" stroke-width="1.4" opacity="0.55"/>
+    <path d="M23 43V6" stroke="#e8a13a" stroke-width="1.2" opacity="0.55"/>
+    <path d="M23 12C19 14 15 18 13 24M23 12C27 14 31 18 33 24M23 20C19 22 16 25 14 30M23 20C27 22 30 25 32 30" stroke="#e8a13a" stroke-width="1" opacity="0.4"/>
+  </svg>
+  <div class="eyebrow">Rumpus Tiki Bar &amp; Kitchen · Felszolgálói onboarding</div>
+  <h1>Nem egy céget ismersz meg most.<br>Egy <em>világot</em>, aminek innentől a része leszel.</h1>
+  <p>Amit itt találsz, nem szabályzat. Ez az, amitől elsőre úgy fogsz mozogni a pályán, mintha már hónapok óta itt lennél. Lesz, ahol csak olvasol. Lesz, ahol döntened kell. És lesz, ahol kiderül, mennyire vagy már Rumpus.</p>
+  <button class="cta" onclick="document.getElementById('sec-story').scrollIntoView({behavior:'smooth'})">Kezdjük ✻</button>
+  <div class="strip"><span>BUDAPEST</span>·<span>2013 ÓTA</span>·<span>AZ ELSŐ ÉS EGYETLEN IGAZI TIKI BÁR</span></div>
+</section>
+
+<main class="wrap">
+
+  <!-- ========================= 1. STORY ========================= -->
+  <section class="section" id="sec-story" data-track data-title="A Rumpus-sztori">
+    <div class="badge-row"><span class="badge trunk">Közös törzs · minden pozíció</span></div>
+    <div class="section-num">1 / 9</div>
+    <h2>Honnan jöttünk — és miért számít ez neked</h2>
+    <p class="lead">A Rumpus nem egy franchise-koncepcióként született. Bánfi Beáta, azaz Tiki Mamma egyszerűen elkezdte felépíteni azt a helyet, amit ő maga is keresett. Ma, amikor felveszed a munkaruhát, egy több mint egy évtizedes történet legfrissebb fejezetébe lépsz be.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2011</div>
+        <div class="timeline-text"><strong>A szikra</strong><p>Tiki Mamma először találkozott a tiki kultúrával — és megszületett benne a saját Rumpus-világ gondolata.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2013</div>
+        <div class="timeline-text"><strong>A Rumpus megszületik</strong><p>December 6-án a vízióból valóság lett: megnyílt a Rumpus Tiki Bar, Magyarország első tiki világa, a Király utcában.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-text"><strong>Rendszerré válik</strong><p>A családi kisvállalkozásból tudatosan épített rendszer lett — elindult a franchise-struktúra felépítése.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-text"><strong>Elismerés</strong><p>Több mint egy évtizednyi építkezés Leader of the Year díjat hozott Tiki Mammának.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-text"><strong>Rumpus univerzum</strong><p>Kitchen, Movement, saját termékvilág és új élmények épülnek a Tiki Bar köré. Egy helyből fokozatosan teljes brand lesz.</p></div>
+      </div>
+    </div>
+
+    <div class="quote-block">„2013-ban Budapest első és egyetlen tiki bárjaként indult. Ma nappal Kitchen, este ikonikus Tiki Bar, és már jóval több is annál.”</div>
+
+    <p>Két egységünk van, és hosszabb távon nemzetközi franchise- és licencpartnereket építünk — elsősorban Európában. Ez azt jelenti, hogy amit te ma megtanulsz, az nem egy helyi szokás. Ez a rendszer, amit majd más városokban is ugyanígy fognak csinálni. Amikor Alohával köszönsz, vagy amikor egy koszos poharat felveszel útközben anélkül, hogy szólnának — a Rumpus-standardot építed, nem csak egy műszakot húzol le.</p>
+  </section>
+
+  <!-- ========================= 2. VALUES ========================= -->
+  <section class="section" id="sec-values" data-track data-title="A 13 alapérték">
+    <div class="badge-row"><span class="badge trunk">Közös törzs · minden pozíció</span></div>
+    <div class="section-num">2 / 9</div>
+    <h2>A 13 alapérték</h2>
+    <p class="lead">Ezeket nem magolni kell. Alább 13 valós helyzet vár — pontosan olyanok, amikkel egy pályán hamar találkozol. Válaszolj úgy, ahogy elsőre gondolnád, aztán nézd meg, mit mondunk erre mi.</p>
+    <div id="values-grid"></div>
+  </section>
+
+  <!-- ========================= 3. ALOHA ========================= -->
+  <section class="section" id="sec-aloha" data-track data-title="Aloha-protokoll">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">3 / 9</div>
+    <h2>Aloha-protokoll és alapkommunikáció</h2>
+    <p class="lead">A Rumpusban vendéget vezetünk: észrevesszük, kapcsolódunk hozzá, segítünk dönteni. A cél nem az, hogy mindenki ugyanazt a hét mondatot mondja — hanem hogy mindenki ugyanazt az érzést adja.</p>
+
+    <div class="quote-block">„Látlak. Figyelek rád. Ismerem, amit kínálunk. Segítek választani. Örülök, hogy itt vagy.”</div>
+
+    <div class="subhead">Aloha az első szó</div>
+    <p>Aki elsőként találkozik a vendéggel, Alohával köszön — <strong>mindenki</strong>, nem csak a host. Aki észreveszi a belépő vendéget, szemkontaktussal és mosollyal jelzi, hogy látta. Ha nem egyértelmű a vendég nyelve, először magyarul szólítjuk meg, aztán szükség esetén váltunk angolra.</p>
+    <ul class="checklist">
+      <li>Aloha! Sziasztok!</li>
+      <li>Aloha! Gyertek beljebb. / Come on in.</li>
+      <li>Aloha! Welcome to Rumpus!</li>
+    </ul>
+
+    <div class="callout">
+      <h3>A „Mindenki Köszön” szabály</h3>
+      <p style="margin-bottom:0">Ha vendég belép: mindenki biccent vagy köszön — a konyhás is, ha kilát. Ha vendég távozik: mindenki elköszön. Ez nem egy ember feladata. Ez egy kultúra.</p>
+    </div>
+
+    <div class="subhead">Az első asztali találkozás</div>
+    <p>Az első mondat soha ne a „Sikerült választani?” legyen. Először azt érezze a vendég, hogy örülünk, hogy eljött.</p>
+    <ul class="checklist">
+      <li>Aloha! Örülök, hogy itt vagytok nálunk.</li>
+      <li>Mikor jártatok nálunk utoljára?</li>
+      <li>Ha első alkalom: „Első élményesek, ennél jobb nem is lehetne. Szuper, hogy én lehetek veletek először itt!”</li>
+    </ul>
+
+    <div class="subhead">Búcsú — Mahalo</div>
+    <p>A vendégélmény nem a fizetéssel ér véget. Aki találkozik a távozó vendéggel, köszönjön el — <em>Mahalo, szép estét! / Mahalo, várunk vissza!</em> Ugyanaz az elv érkezéskor és távozáskor: észrevettünk.</p>
+
+    <div class="subhead">Nagy pörgésben — minimum standard</div>
+    <ul class="checklist">
+      <li>Aloha</li>
+      <li>Szemkontaktus</li>
+      <li>Egy jó kérdés</li>
+      <li>Egy konkrét ajánlás</li>
+      <li>Check-back</li>
+      <li>Időben következő kör</li>
+      <li>Mahalo</li>
+    </ul>
+    <p style="margin-top:6px">A gyors service nem egyenlő a személytelen service-szel.</p>
+  </section>
+
+  <!-- ========================= 4. LANGUAGE ========================= -->
+  <section class="section" id="sec-language" data-track data-title="Tiltott → helyette">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">4 / 9</div>
+    <h2>Rumpus-nyelv: tiltott → helyette</h2>
+    <p class="lead">Van pár mondat, amit soha nem mondunk a Rumpusban — nem azért, mert bunkóság, hanem mert semmit nem visznek előre. Kattints minden kártyára, és nézd meg, mit mondunk helyette.</p>
+    <div id="forbidden-cards"></div>
+
+    <div class="subhead">Amit kerülünk</div>
+    <p>Kerüljük azokat a szavakat, amik olcsósággal, tömegtermékkel vagy középszerűséggel asszociálódnak — <em>akció, olcsóbb, szirup</em>. Helyettük a termék valódi Rumpus-nevét és értékét mondjuk ki.</p>
+    <div class="wordcloud">
+      <span>élmény</span><span>saját</span><span>különleges</span><span>legendás</span><span>ajánlom</span><span>felfedezni</span><span>kipróbálni</span><span>ízvilág</span><span>megosztós</span><span>kedvenc</span><span>egyedi</span>
+    </div>
+  </section>
+
+  <!-- ========================= 5. UPSELL ========================= -->
+  <section class="section" id="sec-upsell" data-track data-title="Ajánlás és upsell">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">5 / 9</div>
+    <h2>Ajánlási logika, dekor visszakérdezése, small talk</h2>
+    <p class="lead">Nem azt kérdezzük magunktól: „Hogyan adjak el még valamit?” Hanem: „Mi lenne a vendég következő jó döntése?” A sales a jó service természetes következménye.</p>
+
+    <div class="subhead">A dekor visszakérdezése</div>
+    <p>A dekor visszavétele természetes ok arra, hogy újra odamenj az asztalhoz — és ez a legjobb pillanat egy check-backre.</p>
+    <ul class="checklist">
+      <li>Na, milyen lett?</li>
+      <li>Ízlik?</li>
+      <li>Jót ajánlottam?</li>
+      <li>Ez volt az az ízvilág, amit kerestél?</li>
+    </ul>
+
+    <div class="quiz-card" id="quiz-timing"></div>
+
+    <div class="subhead">Ételajánlás italok mellé</div>
+    <p>A legerősebb ételajánlás mindig ahhoz kapcsolódik, amit már rendeltek — sosem sima „Kértek kaját?”.</p>
+    <div class="quote-block">„Látom, mindenki a frissebb-savanykásabb vonalra ment. Ehhez nagyon jól működne a ___ az aktuális étlapunkról. Ránéztetek már a megosztós ételeinkre?”</div>
+
+    <div class="subhead">Small talk — eszköz, nem kötelező kör</div>
+    <p>Nem minden asztal akar beszélgetni. Olvasd a vendéget. Ha nyitott, a small talk erősíti a kapcsolatot és az élményt.</p>
+    <ul class="checklist">
+      <li>Külföldi vendégnél: Honnan jöttetek? Hányadik napotok Budapesten?</li>
+      <li>Nappal → este: „Most a nappali Rumpust látjátok — este egészen más világ lesz belőle.”</li>
+      <li>Ha tudod a nevet a foglalásból, vagy születésnapról: használd természetesen.</li>
+    </ul>
+  </section>
+
+  <!-- ========================= 6. TABLE ========================= -->
+  <section class="section" id="sec-table" data-track data-title="Asztal-előkészítés és clearing">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">6 / 9</div>
+    <h2>Asztal-előkészítés, terítés, clearing</h2>
+    <p class="lead">A részletesség nálunk nem plusz — ez az alap. A vendégtérnek úgy kell kinéznie minden pillanatban, mintha ma még senki nem ült volna ott.</p>
+
+    <div class="subhead">Nyitás előtt</div>
+    <ul class="checklist">
+      <li>Ital- és koktéllapok áttörlése fertőtlenítővel, a sérültek selejtezése</li>
+      <li>Vendégtér berendezése, felsöprése, ha kell takarítása</li>
+      <li>Üvegfelületek, pókháló mentesítés</li>
+      <li>Hűtők töltöttségének ellenőrzése</li>
+      <li>Mécsesek előkészítése, nyitás előtti utolsó lépésként meggyújtása</li>
+    </ul>
+
+    <div class="subhead">Dekor és mugok az asztalnál</div>
+    <p>Amikor letetted a dekort, minden koktélt érthetően nevezz meg — ha lehet, azt is mondd el, ki kérte. A kerámia tiki mugokat asztalszám szerint kötelező nyomon követni; ez nem bürokrácia, ez a poharaink védelme.</p>
+
+    <div class="subhead">Clearing</div>
+    <p>Amelyik dekorról lekerültek az italok és már elszublimált a szárazjég, azt minél előbb le kell szedni. A cél egy karibi paradicsom, nem egy lerakat — ez minden vendégre hat, nemcsak az adott asztal komfortérzetére.</p>
+
+    <div class="subhead">Fizetés után</div>
+    <p>A vendég távozása után minél gyorsabban vissza kell állítani az asztalt a kiindulási állapotba: tiszta, száraz, a székek a helyükön, a pótszékek eltávolítva.</p>
+
+    <div class="quiz-card" id="quiz-priority"></div>
+  </section>
+
+  <!-- ========================= 7. HYGIENE ========================= -->
+  <section class="section" id="sec-hygiene" data-track data-title="Higiénia és megjelenés">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">7 / 9</div>
+    <h2>Higiénia és megjelenés</h2>
+    <p class="lead">Ezt kimondjuk, nem szégyenkezve. Ez nem személyes sértés — ez a szint. Ha ez nincs meg, nem tudunk együtt dolgozni.</p>
+
+    <div class="quote-block">„Nálunk az illat az egyenruha része.”</div>
+
+    <ul class="checklist">
+      <li>A munkaruha mindig tiszta — ha kell, legyen váltás nálad a szekrényben</li>
+      <li>Dezodor, parfüm — ha leizzadtál, ugorj hátra egy gyors frissítésre</li>
+      <li>Ha valakin érzitek: szóljatok neki — az még mindig jobb, mint ha a vendég jegyezné meg</li>
+      <li>Cigi vagy vacsora után: rágó (a mentát gumikesztyűben érdemes szedni, mert bemegy a köröm alá)</li>
+      <li>Ápolt, tiszta megjelenés — minden vendég ma keresi a maga különleges estéjét, akkor is, ha neked ez a hatodik műszakod egymás után</li>
+    </ul>
+
+    <div class="callout warn">
+      <h3>Ha neked szólt a kollégád</h3>
+      <p style="margin-bottom:0">Ne sértésnek vedd, hanem segítségnek. Ugyanígy: ha te veszed észre valakin, szólj neki — kollégaként ez a dolgod.</p>
+    </div>
+  </section>
+
+  <!-- ========================= 8. RITUALS ========================= -->
+  <section class="section" id="sec-rituals" data-track data-title="Nyitás és zárás rituáléja">
+    <div class="badge-row"><span class="badge role">Felszolgáló</span></div>
+    <div class="section-num">8 / 9</div>
+    <h2>Nyitás és zárás rituáléja</h2>
+    <p class="lead">A Rumpus működésének minden folyamata lazaságba csomagolt profizmust sugall — a nyitást és a zárást is beleértve. Ami nyitás után marad el, az mindig a vendégélményből vész el.</p>
+
+    <div class="subhead">Nyitás</div>
+    <ul class="checklist">
+      <li>Érkezés a beosztás szerinti időpontban, munkavégzésre alkalmas állapotban</li>
+      <li>Azonnali átöltözés, jelenléti ív kitöltése</li>
+      <li>Itallapok tisztítása, vendégtér és külső terek visszaállítása az esti fotó alapján</li>
+      <li>Hűtők, pult, eszközök ellenőrzése</li>
+      <li>Heti takarítási ütemterv aznapi feladatai</li>
+      <li>Utolsó lépés: gyertyák meggyújtása</li>
+      <li>Ezután 5–10 perces fókuszállító meeting — ezen kötelező a részvétel</li>
+    </ul>
+
+    <div class="subhead">Zárás</div>
+    <ul class="checklist">
+      <li>Utolsó körök felvétele úgy, hogy az elfogyasztásra minimum 30 perc maradjon</li>
+      <li>Pálya alapos söprése, felmosása</li>
+      <li>Mécsesek cseréje, söntés takarítása</li>
+      <li>Hűtők feltöltése (FIFO elv), dekorációk tisztítása, rendrakás</li>
+      <li>Ha a kollégáidnál még tart a zárás: segíts — együtt jöttünk, együtt megyünk</li>
+    </ul>
+
+    <p>Egy dolog mindig igaz: a napfény a legnagyobb kritikusunk. Nappal minden foltnak, pókhálónak sokkal jobban ki kell tűnnie a takarításból, mint este — úgyhogy nyitás előtt sosem elég annyira tisztának lennie, mint amennyire este tűnt.</p>
+  </section>
+
+  <!-- ========================= 9. CLOSING ========================= -->
+  <section class="section closing" id="sec-closing" data-track data-title="Összefoglaló">
+    <div class="section-num">9 / 9</div>
+    <h2>Ennyi volt — egyelőre</h2>
+    <p class="lead">Végigmentél a Rumpus-sztorin, a 13 alapértéken, az Aloha-protokollon, a tiltott mondatokon, az ajánlási logikán, az asztal körüli munkán, a higiénián és a nyitás–zárás rituáléján. Ez nem egy vizsga volt. Ez az alap, amire a pályán építeni fogsz — a többit a mentorod és a valódi műszakok adják hozzá.</p>
+
+    <div class="test-block">
+      <h3>Tudásellenőrző teszt</h3>
+      <p style="margin-bottom:0">A modult egy rövid, önálló kvíz zárja, amit külön Typeformban töltesz ki. A linket hamarosan idetesszük.</p>
+      <div class="field">
+        <span id="typeform-slot">🔗 Typeform link — hamarosan</span>
+      </div>
+      <!-- TYPEFORM_URL_PLACEHOLDER: ide kerül a Typeform kvíz linkje, ha megvan, cseréld le a fenti span szövegét egy <a href="..."> linkre -->
+    </div>
+
+    <p class="final-line">„Amit ma elkezdtünk, az fogja meghatározni, milyen lesz ez a hely.”</p>
+  </section>
+
+</main>
+
+<footer class="end">Rumpus Tiki Bar &amp; Kitchen · Belső onboarding anyag · Felszolgáló modul</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "rumpus_onboarding_felszolgalo_v1";
+  var TOTAL = 9;
+
+  var state = {seen:{}, quiz:{}, flip:{}, lastId:null};
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ var parsed = JSON.parse(raw); if(parsed && typeof parsed === "object"){ state = Object.assign(state, parsed); } }
+  }catch(e){}
+
+  function save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  /* ---------------- 13 alapérték quiz data ---------------- */
+  var VALUES = [
+    {n:1, name:"Pozitivitás", situation:"Rossz napod van, de kezdődik a műszak és jönnek a vendégek. Mit csinálsz?",
+      options:[
+        {t:"Nem mutatod — mosolyogsz, és belevágsz.", ok:true, fb:"Pontosan ez az. „Mosoly — mindig, akkor is, ha rossz nap.” A pozitivitásunk nem díszítés, hanem alapérték: erőt ad neked is, a vendégnek is."},
+        {t:"Elmondod az első asztalnak, hogy nehéz napod van.", ok:false, fb:"A vendég nem hibás a napodért, és nem az ő feladata megvigasztalni téged. Nálunk a mosoly mindig megy — akkor is, ha rossz nap van."},
+        {t:"Visszafogottabb leszel, hátha senki nem veszi észre.", ok:false, fb:"Az visszafogottság a vendégnek is feltűnik. A Rumpusban a pozitivitás nem elrejtett dolog, hanem az, amit adunk."}
+      ]},
+    {n:2, name:"Becsület és becsületesség", situation:"Hibáztál egy rendelésnél, és senki nem vette észre. Mit csinálsz?",
+      options:[
+        {t:"Szólsz a műszakvezetőnek, mielőtt kiderülne.", ok:true, fb:"Ez a becsületesség lényege: nem a leleplezéstől félünk, hanem magunktól várjuk el, hogy helyesen cselekedjünk, akkor is, ha senki nem néz oda."},
+        {t:"Csendben kijavítod, ha tudod, és nem szólsz senkinek.", ok:false, fb:"A felszolgáló már feladott rendelést nem sztornózhat egyedül — ez mindig a műszakvezető hatásköre. A csendes önjavítás pont ott okoz kárt, ahol nem kéne."},
+        {t:"Hagyod, hátha nem lesz belőle baj.", ok:false, fb:"Ez pont az, amit nem teszünk. Az önmagunkhoz való becsületesség azt jelenti, hogy nem a szerencsére bízzuk a hibáinkat."}
+      ]},
+    {n:3, name:"Pontosság és precizitás", situation:"Fizettetéskor nem vagy biztos benne, mennyi a pontos visszajáró. Mit csinálsz?",
+      options:[
+        {t:"Megállsz, gondosan kiszámolod — ha kell, segítséget kérsz.", ok:true, fb:"Ez a precizitás. A kapott bankjegyet mindig félretesszük, amíg számolunk, úgy, hogy a vendég végig lássa — ez véd mindkettőtöket."},
+        {t:"Megbecsülöd, hogy ne várakoztasd a vendéget.", ok:false, fb:"A gyorsaság sosem mehet a pontosság rovására — pénznél pláne nem. Inkább kérj pár másodpercet, mint hogy elszámold magad."},
+        {t:"Lekerekíted, úgyis mindegy pár forint.", ok:false, fb:"Nem mindegy — sem a vendégnek, sem a kasszának. A legmagasabb elvárható pontosság nálunk nem opcionális."}
+      ]},
+    {n:4, name:"Problémamegoldás", situation:"Vendég panaszkodik, de nincs igaza — mit csinálsz?",
+      options:[
+        {t:"Higgadtan meghallgatod, majd ha kell, bevonod a műszakvezetőt.", ok:true, fb:"Hallgassuk meg a vendég észrevételét, ne vitatkozzunk vele — a végső felelősség és döntés a műszakvezetőé. Higgadtság mindig, nyomás alatt is."},
+        {t:"Azonnal megmondod neki, hogy téved.", ok:false, fb:"Ne vitatkozz a vendéggel — ez sosem vet ránk jó fényt, és más vendégek is meghallhatják. Kérj időt, és vond be a vezetőt."},
+        {t:"Bólogatsz, de magadban nem foglalkozol vele.", ok:false, fb:"A probléma nem tűnik el attól, ha nem foglalkozunk vele — csak panasszá alakul. A figyelmesség ott kezdődik, hogy tényleg meghallgatjuk."}
+      ]},
+    {n:5, name:"Lojalitás", situation:"Egy kolléga rosszat mond a Rumpusról vendégek előtt. Mit csinálsz?",
+      options:[
+        {t:"Finoman továbblépsz, aztán utána a vezetővel beszéled meg.", ok:true, fb:"Ez a lojalitás: az egység és a hűség értékeit tartjuk szem előtt, még akkor is, ha valakinek épp rossz napja van. A belső ügyeket nem a vendégtérben rendezzük."},
+        {t:"Egyetértesz, hogy oldd a hangulatot.", ok:false, fb:"Ez pont az ellenkezője annak, amit a hűség jelent — a vendég előtt egységesnek kell látszanunk."},
+        {t:"Nem szólsz semmit, de te is elkezdesz panaszkodni.", ok:false, fb:"A csendes egyetértés is rombolja az egységet. A belső konfliktust a vendégek elől elzárt helyen kell megbeszélni."}
+      ]},
+    {n:6, name:"Kitartóság és céltudatosság", situation:"Zsúfolt este van, fáradt vagy, de két asztal is vár rád. Mit csinálsz?",
+      options:[
+        {t:"Végigcsinálod, lendületben maradva — ez is csak egy műszak.", ok:true, fb:"Határozottan követjük a céljainkat, és kitartunk az eléréséig. A csapat számít rád — pont úgy, ahogy te is számítasz rájuk máskor."},
+        {t:"Lassítasz, hadd várjanak egy kicsit.", ok:false, fb:"A fáradtság érthető, de a vendég nem hibás érte. A kitartóság pont ott mutatkozik meg, amikor nehéz."},
+        {t:"Megkéred a kollégát, vegye át az egészet.", ok:false, fb:"Ő is szeretne mielőbb hazajutni. „Együtt jöttünk, együtt megyünk” — de ez azt jelenti, hogy te is hozod a részed."}
+      ]},
+    {n:7, name:"Emberi kapcsolatok", situation:"Egy visszatérő vendég emlékszik rád, de te nem emlékszel rá. Mit csinálsz?",
+      options:[
+        {t:"Melegen kapcsolódsz hozzá, még ha nem is emlékszel pontosan mikor jártak.", ok:true, fb:"Nem azt kérdezzük, hogy „Voltatok már nálunk?” — hanem hogy „Mikor jártatok nálunk utoljára?”. A kapcsolódás fontosabb, mint az, hogy mindenre emlékezz."},
+        {t:"Bevallod, hogy nem emlékszel rá, és folytatod a rendelésfelvételt.", ok:false, fb:"Nem kell színlelned, hogy emlékszel — de a hangsúly a kapcsolódáson van, nem a bevalláson. Fordítsd a beszélgetést felé, ne magad felé."},
+        {t:"Gyorsan továbblépsz, nincs idő csevegni.", ok:false, fb:"Egy visszatérő vendég a legjobb alkalom a kapcsolódásra — ezt nem érdemes kihagyni, még pörgésben sem."}
+      ]},
+    {n:8, name:"Bajtársiasság és támogatás", situation:"Látod, hogy valami koszos, de nem a te feladatod — mit csinálsz?",
+      options:[
+        {t:"Felveszed, letörlöd — nem kérdezed, kinek a dolga volt.", ok:true, fb:"„Egymás hátát védjük.” A „nem az én dolgom” mondatot száműzzük a Rumpusból — ez pont a bajtársiasság, amiről szó van."},
+        {t:"Szólsz annak, akinek a feladata lett volna.", ok:false, fb:"Nem rossz irány, de közben a vendégtér koszos marad. Előbb oldd meg, aztán ha rendszeresen ismétlődik, jelezd higgadtan."},
+        {t:"Otthagyod — majd valaki más észreveszi.", ok:false, fb:"A célunk egy karibi paradicsom, nem egy lerakat. Amit meglátsz, azért te is felelős vagy, akkor is, ha nem a te asztalod."}
+      ]},
+    {n:9, name:"Felejthetetlen élményadás", situation:"Bejön egy vendég, de épp foglalt vagy — mit csinálsz?",
+      options:[
+        {t:"Azonnal ránézel, szólsz neki, hogy látod és mindjárt jössz.", ok:true, fb:"Az azonnali kommunikáció jelzi a vendégnek, hogy észrevettük az érkezését és fontos a számunkra — ez már önmagában élményt ad, még mielőtt bármit rendelt volna."},
+        {t:"Befejezed, amit csinálsz, aztán odamész.", ok:false, fb:"Pár másodperc szemkontaktus és egy „mindjárt jövök” semmibe nem kerül — a néma várakozás viszont máris rontja az első benyomást."},
+        {t:"Remélve, hogy a host vagy egy kolléga észreveszi.", ok:false, fb:"Ha te vetted észre, a te felelősséged jelezni. Az élményteremtés nem várhat arra, hogy más csinálja meg helyetted."}
+      ]},
+    {n:10, name:"Maximalizmus", situation:"Az asztal majdnem tökéletes, csak egy apró morzsa van rajta, amit talán senki nem venne észre. Mit csinálsz?",
+      options:[
+        {t:"Letörlöd, mielőtt bárki leülne.", ok:true, fb:"Mindig a legjobbat nyújtjuk, és a legtöbbet hozzuk ki minden helyzetből — az apró részletek adják össze a színvonalat, amit a vendég érez, még ha nem is tudja megnevezni, miért."},
+        {t:"Otthagyod, úgyse számít.", ok:false, fb:"Pont ezek az „úgyse számít” pillanatok döntik el, hogy valaki visszajön-e. A maximalizmus a láthatatlan részletekben mutatkozik meg igazán."},
+        {t:"Csak akkor törlöd le, ha valaki szól.", ok:false, fb:"Ha megvárod, hogy szóljanak, már túl késő — a vendég közben leült egy koszos asztalhoz."}
+      ]},
+    {n:11, name:"Fejlődés", situation:"Egy vendég olyat kérdez az itallapról, amire nem tudod a választ. Mit csinálsz?",
+      options:[
+        {t:"„Mindjárt megnézem” — és tényleg utánajársz, aztán megjegyzed.", ok:true, fb:"Ezt mondjuk, ha nem tudjuk: soha nem azt, hogy „nem tudom”, hanem hogy „mindjárt megnézem”. A folyamatos fejlődés pont ezekből az apró utánajárásokból épül fel."},
+        {t:"Kitalálsz valami hihetőt.", ok:false, fb:"Ez rövid távon megúszásnak tűnik, hosszú távon viszont hiteltelenné tesz — és a vendég rákérdezhet legközelebb is."},
+        {t:"Azt mondod, nem tudod.", ok:false, fb:"Ez a tiltott válasz. Helyette: „Mindjárt megnézem” — utána pedig tényleg nézd is meg, és jegyezd meg a választ."}
+      ]},
+    {n:12, name:"Számíthatóság", situation:"Beteg vagy, és nem tudsz bemenni a holnapi műszakodra. Mit csinálsz?",
+      options:[
+        {t:"Azonnal, minimum 4 órával a műszak előtt szólsz a vezetődnek.", ok:true, fb:"Pontosan ez a szabály — így tud gondoskodni a pótlásodról. A számíthatóság nem azt jelenti, hogy sosem vagy beteg, hanem hogy időben szólsz."},
+        {t:"Megvárod, hátha jobban leszel.", ok:false, fb:"Minél később szólsz, annál nehezebb megoldani a pótlást — ez a csapatot hozza nehéz helyzetbe, nem téged véd."},
+        {t:"Megkéred egy ismerősödet, hogy szóljon helyetted majd valamikor.", ok:false, fb:"A tájékoztatás a te felelősséged, közvetlenül az aznapi vezetőd felé — nem lehet közvetítőkön keresztül elintézett mellékes ügy."}
+      ]},
+    {n:13, name:"Anyagi stabilitás", situation:"A vendég majdnem kész a rendeléssel, de nem kérdezted meg, kérnek-e ételt is az italok mellé. Mit csinálsz?",
+      options:[
+        {t:"Természetesen rákérdezel, mert a jó ajánlás mindkettőtöknek jó.", ok:true, fb:"„A sales a jó service természetes következménye.” Az anyagi stabilitás nem tukmálás — az, hogy a jó munkánk minden szempontból megéri: a vendégnek, neked és a bárnak is."},
+        {t:"Nem szólsz, nehogy tolakodónak tűnj.", ok:false, fb:"Egy jól időzített, konkrét ajánlás nem tolakodás — az italrendelés lezárása után teljesen természetes megkérdezni, kérnek-e harapnivalót."},
+        {t:"Csak akkor ajánlasz, ha a vendég kérdez.", ok:false, fb:"Mi vezetjük a vendéget, nem fordítva. Az anyagi stabilitásunk azon is múlik, hogy felajánljuk a jó döntési lehetőségeket, nem várjuk meg őket."}
+      ]}
+  ];
+
+  var valuesGrid = document.getElementById("values-grid");
+  VALUES.forEach(function(v, idx){
+    var qid = "value-" + idx;
+    var card = document.createElement("div");
+    card.className = "quiz-card";
+    card.innerHTML =
+      '<div class="quiz-head"><div class="quiz-num">' + v.n + '</div><div class="quiz-value">' + v.name + '</div></div>' +
+      '<div class="quiz-situation">' + v.situation + '</div>' +
+      '<div class="quiz-options"></div>' +
+      '<div class="quiz-feedback"><span class="tag"></span><span class="txt"></span></div>';
+    var optWrap = card.querySelector(".quiz-options");
+    var fb = card.querySelector(".quiz-feedback");
+    v.options.forEach(function(o, oi){
+      var btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.type = "button";
+      btn.textContent = o.t;
+      btn.addEventListener("click", function(){ answerQuiz(qid, card, optWrap, fb, v.options, oi); });
+      optWrap.appendChild(btn);
+    });
+    valuesGrid.appendChild(card);
+    restoreQuiz(qid, card, optWrap, fb, v.options);
+  });
+
+  function answerQuiz(qid, card, optWrap, fb, options, chosenIdx){
+    if(state.quiz[qid] !== undefined) return;
+    state.quiz[qid] = chosenIdx;
+    save();
+    renderQuizResult(optWrap, fb, options, chosenIdx);
+  }
+  function restoreQuiz(qid, card, optWrap, fb, options){
+    if(state.quiz[qid] !== undefined){
+      renderQuizResult(optWrap, fb, options, state.quiz[qid]);
+    }
+  }
+  function renderQuizResult(optWrap, fb, options, chosenIdx){
+    var btns = optWrap.querySelectorAll(".option-btn");
+    btns.forEach(function(b, i){
+      b.disabled = true;
+      if(options[i].ok) b.classList.add("correct");
+      else if(i === chosenIdx) b.classList.add("incorrect");
+    });
+    var chosen = options[chosenIdx];
+    fb.classList.add("show", chosen.ok ? "good" : "bad");
+    fb.querySelector(".tag").textContent = chosen.ok ? "Így van" : "Inkább így";
+    fb.querySelector(".txt").textContent = chosen.fb;
+  }
+
+  /* ---------------- tiltott -> helyette flip cards ---------------- */
+  var FORBIDDEN = [
+    {bad:"Sikerült választani?", good:"Nyitottak vagytok ajánlásra, vagy már megvan?", why:"A „sikerült választani” egy feladatot sugall, amit vagy teljesített a vendég, vagy nem — semmit nem tudunk meg róla, és nem nyit teret arra, hogy szakértőként segítsünk."},
+    {bad:"Voltatok már nálunk?", good:"Mikor jártatok nálunk utoljára?", why:"Ez a kérdés eleve feltételezi, hogy visszatérők — természetesebb, és bárhogy válaszolnak, van folytatás."},
+    {bad:"Kértek még egy koktélt?", good:"Néztétek már, melyikkel folytassuk?", why:"Ne igen/nem kérdésre építs — vezesd a döntést, a jó pillanat, amikor az ital fogyóban van, de még nem fogyott el."},
+    {bad:"Kértek kaját?", good:"Ki akarjátok próbálni a tiki étlapunk egyik legjobb fogását?", why:"A konkrét, indokolt ajánlás mindig erősebb, mint egy nyitott kérdés."},
+    {bad:"Mit kértek?", good:"Mivel kezdünk? / Mit hozhatok nektek?", why:"Kis nyelvi váltás, de vezetést sugall ítélkezés helyett."},
+    {bad:"A Death Race négy koktél.", good:"Ez egy élménycsomagunk a legbevállalósabbaknak: négy koktélból áll, a végén pedig megérdemelt jutalom jár a teljesítésért.", why:"A termékeinket sztoriként adjuk el, nem specifikációként."},
+    {bad:"Szirup.", good:"Egy fűszeres tiki összetevő, amit mi készítünk házon belül.", why:"A „szirup” szó lekicsinyli az összetevőt — mondd el helyette, mi teszi különlegessé, és hogy házon belül készül."},
+    {bad:"Akció.", good:"Aktuális ajánlat / különleges lehetőség.", why:"Kerüljük az olcsósággal asszociálódó szavakat — a Rumpus nem kuponvadász hely."},
+    {bad:"Olcsóbb.", good:"Fogalmazd meg pozitívan az értéket vagy előnyt.", why:"Ne az árra fókuszálj, hanem arra, mit kap érte a vendég."}
+  ];
+  var forbiddenWrap = document.getElementById("forbidden-cards");
+  FORBIDDEN.forEach(function(f, idx){
+    var fid = "forbidden-" + idx;
+    var card = document.createElement("div");
+    card.className = "flip-card";
+    card.innerHTML =
+      '<div class="flip-front">' +
+        '<span class="flip-tag">Tiltott</span>' +
+        '<div class="phrase">„' + f.bad + '”</div>' +
+        '<div class="flip-hint">Koppints — mit mondjunk helyette?</div>' +
+      '</div>' +
+      '<div class="flip-back">' +
+        '<span class="good-tag">Helyette</span>' +
+        '<div class="phrase">„' + f.good + '”</div>' +
+        '<div class="why">' + f.why + '</div>' +
+      '</div>';
+    var back = card.querySelector(".flip-back");
+    var hint = card.querySelector(".flip-hint");
+    card.addEventListener("click", function(){
+      if(back.classList.contains("show")) return;
+      back.classList.add("show");
+      hint.style.display = "none";
+      state.flip[fid] = true;
+      save();
+    });
+    if(state.flip[fid]){ back.classList.add("show"); hint.style.display = "none"; }
+    forbiddenWrap.appendChild(card);
+  });
+
+  /* ---------------- standalone quizzes ---------------- */
+  function buildSimpleQuiz(container, qid, situation, options){
+    container.innerHTML =
+      '<div class="quiz-situation">' + situation + '</div>' +
+      '<div class="quiz-options"></div>' +
+      '<div class="quiz-feedback"><span class="tag"></span><span class="txt"></span></div>';
+    var optWrap = container.querySelector(".quiz-options");
+    var fb = container.querySelector(".quiz-feedback");
+    options.forEach(function(o, oi){
+      var btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.type = "button";
+      btn.textContent = o.t;
+      btn.addEventListener("click", function(){ answerQuiz(qid, container, optWrap, fb, options, oi); });
+      optWrap.appendChild(btn);
+    });
+    restoreQuiz(qid, container, optWrap, fb, options);
+  }
+
+  buildSimpleQuiz(document.getElementById("quiz-timing"), "quiz-timing",
+    "Mikor van itt az ideje, hogy felajánld a következő kört?",
+    [
+      {t:"Amikor a pohár már teljesen kiürült.", ok:false, fb:"Ha megvárod az üres poharat, a vendégnek üresjárata lesz — az ideális pillanat korábban van."},
+      {t:"Amikor az ital még fogyóban van, de nem fogyott még el.", ok:true, fb:"Pontosan. Mire elkészül a következő kör, az előző éppen elfogyhat — így nincs se üresjárat, se nyomulás."},
+      {t:"Tíz perccel az első ital kihozatala után, órára mérve.", ok:false, fb:"Nem az eltelt idő számít, hanem az, hol tart a pohár — figyeld a vendéget, ne az órát."}
+    ]);
+
+  buildSimpleQuiz(document.getElementById("quiz-priority"), "quiz-priority",
+    "Egyszerre több dolog várna rád: egy új vendég lép be, egy elkészült ital vár felszolgálásra, és egy asztal fizetne. Mi jön elsőként?",
+    [
+      {t:"A vendég köszöntése — utána az elkészült ital, majd a fizettetés.", ok:true, fb:"A feladatok prioritási sorrendje nálunk: vendég köszöntése → elkészült italok felszolgálása → rendelésfelvétel → fizettetés. Az azonnali köszönés semmibe nem kerül, de sokat ad."},
+      {t:"A fizettetés — az asztalnak minél előbb fel kell szabadulnia.", ok:false, fb:"A fizettetés fontos, de a belépő vendég köszöntése mindig előrébb való — az azonnali kommunikáció jelzi, hogy észrevettük."},
+      {t:"Az elkészült ital — az hidegszik, az nem várhat.", ok:false, fb:"Az ital tényleg nem várhat sokáig, de egy pillanatnyi szemkontaktus és Aloha a belépő vendég felé nem tart tovább pár másodpercnél, és nem hagyhatod ő őt köszöntés nélkül."}
+    ]);
+
+  /* ---------------- progress tracking ---------------- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".section[data-track]"));
+  var fillEl = document.getElementById("progressfill");
+  var countEl = document.getElementById("progresscount");
+  var titleEl = document.getElementById("progresstitle");
+
+  function updateProgressUI(){
+    var seenCount = Object.keys(state.seen).length;
+    if(seenCount > TOTAL) seenCount = TOTAL;
+    fillEl.style.width = (seenCount / TOTAL * 100) + "%";
+    countEl.textContent = seenCount + " / " + TOTAL + " szakasz";
+  }
+
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = entry.target.id;
+        if(entry.isIntersecting){
+          titleEl.textContent = entry.target.getAttribute("data-title") || "";
+          if(!state.seen[id]){
+            state.seen[id] = true;
+            updateProgressUI();
+          }
+          state.lastId = id;
+          save();
+        }
+      });
+    }, {threshold:0, rootMargin:"-35% 0px -35% 0px"});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  function checkBottomReached(){
+    var atBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 4);
+    if(atBottom && sections.length){
+      var last = sections[sections.length - 1];
+      if(!state.seen[last.id]){
+        state.seen[last.id] = true;
+        state.lastId = last.id;
+        updateProgressUI();
+        save();
+      }
+    }
+  }
+  window.addEventListener("scroll", checkBottomReached, {passive:true});
+  window.addEventListener("resize", checkBottomReached);
+
+  updateProgressUI();
+  checkBottomReached();
+
+  /* resume where left off */
+  if(state.lastId){
+    var target = document.getElementById(state.lastId);
+    if(target){
+      setTimeout(function(){ target.scrollIntoView({behavior:"auto", block:"start"}); }, 30);
+    }
+  }
+})();
+</script>
+</body>
+</html>
