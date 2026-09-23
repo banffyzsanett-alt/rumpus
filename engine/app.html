@@ -143,6 +143,7 @@
         '<div class="cstat"><strong>' + engine.streakCount() + '</strong><span>napos sorozat</span></div>' +
         '<div class="cstat"><strong>' + engine.modulesMeta.modules.length + ' / ' + engine.modulesMeta.modules.length + '</strong><span>modul kész</span></div>';
       celebrationEl.hidden = false;
+      celebrationEl.scrollIntoView({ behavior: "smooth", block: "start" });
       requestAnimationFrame(function () { celebrationEl.classList.add("show"); });
     }
   }

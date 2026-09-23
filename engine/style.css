@@ -51,9 +51,20 @@ button{font-family:inherit;}
 [hidden]{display:none !important;}
 
 /* -------- splash / celebration (full-screen moments) -------- */
+/* Szándékosan NEM position:fixed és NEM vh-alapú magasság: egy
+   beágyazó felület (pl. egy iframe, amit a host a saját, akár a
+   látható ablaktól eltérő magasságúra méretez) mellett a "vh" is
+   ahhoz az idegen magassághoz igazodna, nem a tényleges látható
+   területhez — a réteg így távol landolhatna a látható ablaktól.
+   Helyette a tartalom természetes mérete (bőséges paddinggel) adja a
+   magasságot: ez mindig az oldal tetején jelenik meg, függetlenül a
+   befogadó konténer méretétől. */
 #splash, #celebration{
-  position:fixed;inset:0;z-index:100;
+  position:relative;
+  width:100%;
+  z-index:100;
   display:flex;align-items:center;justify-content:center;
+  padding:64px 0;
   overflow:hidden;transition:opacity .4s ease;
 }
 #splash.fade-out{opacity:0;pointer-events:none;}
