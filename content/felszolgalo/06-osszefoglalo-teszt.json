@@ -1,76 +1,120 @@
 {
   "id": "06-osszefoglalo-teszt",
   "title": "Próbatétel",
-  "intro": "Az utolsó kör. 9 kérdés az egész úton tanultakból. A rossz válasz nem büntet — csak a jó ad pontot. Hajrá.",
+  "intro": "Az utolsó kör. Ezek a kérdések nem magolós tesztek — olyan helyzeteket írnak le, amikben a rossz válasz is ésszerűnek hangzik elsőre. Gondolkodj, mielőtt kattintasz. A rossz válasz nem büntet, csak a jó ad pontot.",
   "lessons": [
     {
       "id": "06-01-teszt",
       "type": "quiz",
-      "xp": 99,
+      "xp": 108,
       "title": "Záró kvíz",
       "questions": [
         {
-          "q": "Melyik évben nyílt meg a Rumpus Tiki Bar?",
+          "q": "Miben más egy jó Rumpus-felszolgáló, mint egy általánosan jó éttermi felszolgáló?",
           "options": [
-            { "t": "2011-ben", "correct": false, "fb": "2011-ben csak a szikra volt meg." },
-            { "t": "2013 decemberében", "correct": true, "fb": "Pontosan, december 6-án, a Király utcában." },
-            { "t": "2016-ban", "correct": false, "fb": "Nem — a Rumpus 2013-ban nyílt." }
+            { "t": "Semmiben — a jó szerviz mindenhol ugyanaz, csak más a dekoráció körülötte.", "correct": false, "fb": "Pont ez a lekicsinylő nézet az, amit a Rumpusban nem vallunk — a különbség valódi, nem csak vizuális." },
+            { "t": "Nálunk minden gyorsabban kell történjen, ez az egyetlen igazi különbség.", "correct": false, "fb": "A tempó fontos, de nem ez a lényegi különbség — az igazi különbség mélyebben van." },
+            { "t": "Nem csak pontos és gyors: történetet ad, ízlést térképez fel, ismeri a tiki és rum kontextust, és a lazaságot prémium kontrollal kombinálja.", "correct": true, "fb": "Pontosan ez a Rumpus-minőség — a szakmai pontosság és a laza, emberi jelenlét együtt." },
+            { "t": "Abban, hogy nálunk nem szükséges alapvető italismeret, elég a lelkesedés.", "correct": false, "fb": "A lelkesedés fontos, de az italismeret nélkül nem tudsz hitelesen ajánlani vagy sztorizni." }
           ]
         },
         {
-          "q": "Egy vendég panaszkodik, de nincs igaza. Mi a helyes első lépés?",
+          "q": "Mit jelent a „table ownership” elve a Rumpusban?",
           "options": [
-            { "t": "Azonnal megmondod neki, hogy téved.", "correct": false, "fb": "Ne vitatkozz a vendéggel — ez sosem vet ránk jó fényt." },
-            { "t": "Higgadtan végighallgatod, majd bevonod a műszakvezetőt.", "correct": true, "fb": "Így van — hallgatás, aztán a megfelelő hatáskör." }
+            { "t": "Egy asztalhoz kizárólag egyetlen felszolgáló érhet hozzá egész este, más nem segíthet be.", "correct": false, "fb": "Ez túl merev — más kolléga segíthet, a lényeg máshol van." },
+            { "t": "Van elsődleges felelőse az asztalnak, aki követi az estét, de a vendég a teljes Rumpus vendége — más kolléga segíthet, de a felelős visszaveszi a kapcsolatot.", "correct": true, "fb": "Pontosan ez az egyensúly: van gazdája az asztalnak, de nem elszigetelt sziget." },
+            { "t": "Minden felszolgáló egyformán felelős minden asztalért, senkinek nincs kiemelt szerepe.", "correct": false, "fb": "Ha senkinek sincs kiemelt felelőssége, könnyen senki nem követi az asztal ritmusát." },
+            { "t": "A host dönti el minden este újra, kié lesz az adott asztal.", "correct": false, "fb": "A table ownership nem napi kiosztásról szól, hanem arról, ki felelős az adott estén az adott vendégért." }
           ]
         },
         {
-          "q": "Látod, hogy egy koszos asztal nem a te szekciód, de senki más nincs a közelben. Mit teszel?",
+          "q": "Egy vendég panaszkodik az italára, de te pontosan tudod, hogy jól készült el. Mi a helyes első lépés?",
           "options": [
-            { "t": "Felveszed, letörlöd — nem kérdezed, kié volt.", "correct": true, "fb": "Ez a bajtársiasság: egymás hátát védjük, „nem az én dolgom” nélkül." },
-            { "t": "Otthagyod — majd valaki más észreveszi.", "correct": false, "fb": "A cél egy karibi paradicsom, nem egy lerakat." }
-          ]
-        },
-        {
-          "q": "Mi az első szó, amit egy belépő vendégnek mondunk?",
-          "options": [
-            { "t": "Sziasztok!", "correct": false, "fb": "Ez sem rossz, de nálunk van egy márkaarculati köszönés, ami mindig ott van előtte." },
-            { "t": "Aloha!", "correct": true, "fb": "Mindig — mindenki, nem csak a host." }
+            { "t": "Azonnal, higgadtan elmagyarázod neki, hogy az ital pontosan a recept szerint készült.", "correct": false, "fb": "Ez még higgadtan is vitatkozásnak hat a vendég szemében — a magyarázat nem helyettesíti a meghallgatást." },
+            { "t": "Higgadtan végighallgatod, majd bevonod a műszakvezetőt.", "correct": true, "fb": "Így van — hallgatás, aztán a megfelelő hatáskör. Nem a te dolgod eldönteni helyben, kinek van igaza." },
+            { "t": "Megkérdezed a szomszéd asztalt, ők hogy találták ugyanazt az italt.", "correct": false, "fb": "Ez a vendéget kínos helyzetbe hozza mások előtt — sosem vonunk be idegen vendégeket egy panasz igazolásába." },
+            { "t": "Felajánlod, hogy ingyen csinálsz neki egy másikat, hogy gyorsan lezáruljon a helyzet.", "correct": false, "fb": "Kompenzációt felszolgálóként nem ígérhetsz — ez mindig a műszakvezető döntése." }
           ]
         },
         {
           "q": "Melyik mondatot NEM használjuk soha egy vendégnél?",
           "options": [
-            { "t": "„Sikerült választani?”", "correct": true, "fb": "Ez a legfontosabb tiltott mondat — helyette: „Nyitottak vagytok ajánlásra, vagy már megvan?”" },
-            { "t": "„Mikor jártatok nálunk utoljára?”", "correct": false, "fb": "Ez pont a jó irány — feltételezi, hogy visszatérők." }
+            { "t": "„Sikerült választani?”", "correct": true, "fb": "Ez a legfontosabb tiltott mondat — vizsgahelyzetet teremt. Helyette: „Nyitottak vagytok ajánlásra, vagy már megvan?”" },
+            { "t": "„Mikor jártatok nálunk utoljára?”", "correct": false, "fb": "Ez pont a jó irány — feltételezi, hogy visszatérők, és bárhogy válaszolnak, van folytatás." },
+            { "t": "„Ez a legnépszerűbb koktélunk.”", "correct": false, "fb": "Ez nem tiltott, csak finomhangolásra szorul — kiegészítő infónak jó, de önmagában nem elég indok egy ajánláshoz." },
+            { "t": "„Ezt nem szeretném rosszul mondani, megkérdezem és rögtön jövök.”", "correct": false, "fb": "Ez pont a támogatott, jó reakció bizonytalanság esetén." }
+          ]
+        },
+        {
+          "q": "Egy allergiás vendég olyat kérdez egy összetevőről, amiben nem vagy teljesen biztos. Mit teszel?",
+          "options": [
+            { "t": "Mivel valószínűleg nincs benne az adott anyag, megnyugtatod és kiszolgálod.", "correct": false, "fb": "A „valószínűleg” allergénnél nem elég — ez pontosan az a találgatás, ami tilos." },
+            { "t": "Ellenőrzöd a bárnál vagy a konyhán, mielőtt bármit mondanál vagy kiszolgálnál.", "correct": true, "fb": "Pontosan ez a standard — allergénnél mindig ellenőrzött, nem feltételezett választ adunk." },
+            { "t": "Másik italt ajánlasz neki, hogy elkerüld a kérdést.", "correct": false, "fb": "A terelés nem válaszol a kérdésére — pontos információt kell adnod, nem kerülgetést." },
+            { "t": "Megkéred, hogy ő maga kérdezze meg a bárpultnál.", "correct": false, "fb": "Ez áthárítás — a te felelősséged utánajárni, nem a vendégé." }
+          ]
+        },
+        {
+          "q": "Melyik viselkedés árulja el, hogy valakit rosszul tanítottak be a Rumpusban?",
+          "options": [
+            { "t": "Kérdez, mielőtt bármit ajánlana a vendégnek.", "correct": false, "fb": "Ez pont a jól betanított felszolgáló jele, nem a rosszul betanítotté." },
+            { "t": "Mindenkinek ugyanazt a koktélt ajánlja, függetlenül attól, mit mondott a vendég.", "correct": true, "fb": "Pontosan ez az egyik legerősebb árulkodó jel — a sablonos, vendégtől független ajánlás." },
+            { "t": "Folyamatosan látja a vendégteret, nem kell utána vadászni.", "correct": false, "fb": "Ez is a jó betanítás jele — a floor folyamatos figyelése alap elvárás." },
+            { "t": "Tudja, mikor kell segítséget kérnie egy helyzetben.", "correct": false, "fb": "Ez erősség, nem hiba — a bizonytalanság felvállalása és a kérdezés jó jel." }
+          ]
+        },
+        {
+          "q": "Egy társaság egyik tagja már bizonytalanul beszél, de a többiek újabb kört kérnek neki is. Mi a helyes lépéssorrend?",
+          "options": [
+            { "t": "Kiszolgálod mindenkit, mert a többség rendelt, és nem a te dolgod megítélni, ki mennyit bír.", "correct": false, "fb": "A biztonság sosem a sales alá van rendelve — ezt nem szabad egyedül eldöntened kiszolgálás irányába." },
+            { "t": "Felveszed a többiek rendelését, de mielőtt bármit ígérnél az érintettnek, jelzed a helyzetet a vezetőnek.", "correct": true, "fb": "Pontosan ez a helyes sorrend — jelzés, mielőtt bármit kiszolgálnál, a döntést pedig a vezető hozza meg." },
+            { "t": "Egyedül döntesz úgy, hogy nem szolgálod ki, és ezt közvetlenül közlöd vele.", "correct": false, "fb": "A megtagadás döntése mindig vezetői hatáskör — a te dolgod a jelzés, nem az egyoldalú döntés." },
+            { "t": "Halkan megkéred a társaság egyik tagját, hogy ítélje meg helyetted a helyzetet.", "correct": false, "fb": "Ez nem a vendégtársak felelőssége — ez mindig belső, vezetői döntés kell legyen." }
+          ]
+        },
+        {
+          "q": "Látod, hogy egy koszos asztal nem a te szekciód, de senki más nincs a közelben. Mit teszel?",
+          "options": [
+            { "t": "Felveszed, letörlöd — nem kérdezed, kié volt.", "correct": true, "fb": "Ez a bajtársiasság gyakorlatban: egymás hátát védjük, „nem az én dolgom” nélkül." },
+            { "t": "Otthagyod — majd valaki más észreveszi.", "correct": false, "fb": "A cél egy karibi paradicsom, nem egy lerakat — és épp te vagy az, aki most láthatta." },
+            { "t": "Megkeresed a felelős kollégát, és megvárod, amíg ő ér rá.", "correct": false, "fb": "Ha te ott vagy és nincs más dolgod, a várakozás közben az asztal feleslegesen marad rendezetlen." },
+            { "t": "Jelented a műszakvezetőnek, hogy valaki nem végezte el a dolgát.", "correct": false, "fb": "Ez pont az ellenkező irányba visz — a bajtársiasság a megoldásról szól, nem a hibáztatásról." }
+          ]
+        },
+        {
+          "q": "Mit jelent a felszolgálói pályán a 75%-os szint elérése?",
+          "options": [
+            { "t": "Teljesen önálló munkavégzés — innentől a mentor már nem követi a fejlődésed.", "correct": false, "fb": "Ez a 100%-os szintre igaz — 75%-on a mentor figyelme még nem szűnik meg teljesen." },
+            { "t": "Még mindig kizárólag a mentor mellett, megfigyelőként dolgozol.", "correct": false, "fb": "Ez a belépő, 50%-os szint jellemzője — 75%-on már önállóan dolgozol." },
+            { "t": "Már önálló, magabiztos vendégkommunikáció, önálló munkavégzés csúcsidőben is, és képesség önálló rumkóstoló-ajánlásra.", "correct": true, "fb": "Pontosan — ez a támogatott önállóság szintje: dolgozol, de a fejlődésed még követve van." },
+            { "t": "Kizárólag az elméleti vizsga letétele számít, gyakorlati elvárás nincs hozzá.", "correct": false, "fb": "Mindkettő számít — az írásbeli vizsga mellett a gyakorlati, megfigyelt teljesítmény is feltétel." }
+          ]
+        },
+        {
+          "q": "Egy vendég azt mondja, drágának találja az egyik koktélt. Mi a jó reakció?",
+          "options": [
+            { "t": "Egyetértesz vele, hogy tényleg drága, de „ez van, ezek az árak”.", "correct": false, "fb": "Ez leértékeli a saját termékünket a vendég előtt — pont ez ellen dolgozunk." },
+            { "t": "Nem védekezel és nem minősíted a vendég pénztárcáját — röviden elmondod az értékét, majd ha kell, mutatsz másik opciót.", "correct": true, "fb": "Pontosan ez a Rumpus-válasz: érték, nem védekezés." },
+            { "t": "Azonnal felajánlod, hogy elengeded az árat.", "correct": false, "fb": "Árengedményt felszolgálóként nem ígérhetsz — ez mindig vezetői hatáskör." },
+            { "t": "Elmagyarázod neki a bár teljes költségstruktúráját, hogy megértse, miért ennyi az ár.", "correct": false, "fb": "A belső költségek nem nyilvánosak, és nem is ez érdekli a vendéget — az élményt és az értéket mutasd meg." }
           ]
         },
         {
           "q": "Mikor van itt az ideje felajánlani a következő kört?",
           "options": [
-            { "t": "Amikor a pohár már teljesen kiürült.", "correct": false, "fb": "Akkor már üresjárat keletkezett." },
-            { "t": "Amikor az ital még fogyóban van, de nem fogyott még el.", "correct": true, "fb": "Pontosan ez az ideális pillanat." }
-          ]
-        },
-        {
-          "q": "Egészítsd ki: „Nálunk az illat…”",
-          "options": [
-            { "t": "…nem számít, amíg dolgozol.", "correct": false, "fb": "Nálunk pont hogy számít — ez a szint." },
-            { "t": "…az egyenruha része.", "correct": true, "fb": "Így van — ez nem személyes sértés, ez a Rumpus-standard." }
-          ]
-        },
-        {
-          "q": "Mikor kell leszedni a dekort az asztalról?",
-          "options": [
-            { "t": "Amint az italok elfogytak és a szárazjég már elszublimált.", "correct": true, "fb": "Minél előbb — a cél egy karibi paradicsom, nem egy lerakat." },
-            { "t": "Csak akkor, ha a vendég szól érte.", "correct": false, "fb": "Ne várd meg — ez a te felelősséged, nem a vendégé." }
+            { "t": "Amikor a pohár már teljesen kiürült.", "correct": false, "fb": "Akkor már üresjárat keletkezett — a vendég feleslegesen vár." },
+            { "t": "Amikor az ital még fogyóban van, de nem fogyott még el.", "correct": true, "fb": "Pontosan ez az ideális pillanat — mire elkészül a következő kör, az előző éppen elfogyhat." },
+            { "t": "Pontosan tíz perccel az előző ital kihozatala után.", "correct": false, "fb": "Nem az eltelt idő számít, hanem hol tart a pohár — ez asztalonként eltérő." },
+            { "t": "Amikor a vendég int, hogy szeretne rendelni.", "correct": false, "fb": "Ha idáig jut a helyzet, az már szolgáltatási hiba — nem kellene odaintegetni a felszolgálót." }
           ]
         },
         {
           "q": "Mit mondunk a vendégnek, amikor távozik?",
           "options": [
             { "t": "Mahalo!", "correct": true, "fb": "Pontosan — ugyanaz az elv érkezéskor és távozáskor: észrevettünk." },
-            { "t": "Viszlát!", "correct": false, "fb": "Nem rossz, csak nem ez a Rumpus-szó rá." }
+            { "t": "Viszlát!", "correct": false, "fb": "Nem rossz, csak nem ez a Rumpus-hangja — a Mahalo a márka része, ugyanúgy, mint az Aloha." },
+            { "t": "Semmit, csak biccentünk, ha épp arra járunk.", "correct": false, "fb": "A búcsú ugyanannyira számít, mint a fogadás — ezt sosem hagyjuk ki." },
+            { "t": "Köszönjük, gyertek vissza!", "correct": false, "fb": "Jó szándékú, de nem ez a Rumpus márkaarculati köszönése — a Mahalo az, amit mindig használunk." }
           ]
         }
       ]

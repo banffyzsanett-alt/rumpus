@@ -9,7 +9,7 @@
       "title": "A Rumpus-sztori",
       "subtitle": "Honnan jöttünk",
       "icon": "leaf",
-      "xpReward": 30,
+      "xpReward": 49,
       "unlockAfter": null
     },
     {
@@ -18,7 +18,7 @@
       "title": "A 13 alapérték",
       "subtitle": "Amiben hiszünk",
       "icon": "flame",
-      "xpReward": 65,
+      "xpReward": 93,
       "unlockAfter": "01-story"
     },
     {
@@ -27,7 +27,7 @@
       "title": "Éles helyzetek",
       "subtitle": "Döntened kell",
       "icon": "path",
-      "xpReward": 60,
+      "xpReward": 82,
       "unlockAfter": "02-ertekek"
     },
     {
@@ -36,7 +36,7 @@
       "title": "Aloha-nyelv",
       "subtitle": "Hogyan beszélünk",
       "icon": "wave",
-      "xpReward": 70,
+      "xpReward": 102,
       "unlockAfter": "03-elagazo-tortenetek"
     },
     {
@@ -45,7 +45,7 @@
       "title": "A pálya",
       "subtitle": "Kéz a munkában",
       "icon": "tray",
-      "xpReward": 55,
+      "xpReward": 106,
       "unlockAfter": "04-alohakommunikacio"
     },
     {
@@ -54,7 +54,7 @@
       "title": "Próbatétel",
       "subtitle": "Zárókvíz",
       "icon": "mask",
-      "xpReward": 99,
+      "xpReward": 108,
       "unlockAfter": "05-gyakorlat"
     }
   ]

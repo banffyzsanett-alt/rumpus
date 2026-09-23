@@ -152,6 +152,62 @@
           "text": "Senki nem veszi észre őket egy percig. Végül maguktól keresnek asztalt — pont az, amit a Rumpusban nem szeretnénk: hogy a vendégnek kelljen megoldania, hogy észrevegyék."
         }
       }
+    },
+    {
+      "id": "03-04-mar-ivott-egy-part",
+      "type": "branch-story",
+      "title": "Már ivott egy párat",
+      "start": "root",
+      "xpMap": { "good": 22, "neutral": 13, "bad": 6 },
+      "nodes": {
+        "root": {
+          "text": "Egy hatfős társaság elég hangos, jó a hangulat — de az egyikük már bizonytalanul beszél, imbolyog ültében, és a szavai összefolynak. Az asztal új kört kér, őt is beleértve. Mit csinálsz?",
+          "choices": [
+            { "text": "Felveszed a teljes rendelést — nem a te dolgod eldönteni, ki mennyit bír.", "next": "sales_visz" },
+            { "text": "Felveszed a többiekét, de mielőtt bármit ígérnél neki, halkan jelzed a helyzetet a műszakvezetőnek.", "next": "jelzed" }
+          ]
+        },
+        "sales_visz": {
+          "text": "Kihozod az italokat, az imbolygó vendég is megkapja a sajátját. Tíz perc múlva már alig tud ülni, a társasága kezdi nem érteni, mi történik. Mit teszel most?",
+          "choices": [
+            { "text": "Végre szólsz a műszakvezetőnek — most már késve.", "next": "keso" },
+            { "text": "Remélve, hogy megoldódik magától, csak figyeled a helyzetet.", "next": "eszkalal" }
+          ]
+        },
+        "keso": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "A műszakvezető átveszi a helyzetet, de az italt már nem lehet visszavenni. A vendég rosszul lesz, a társasága zavarban van, a szomszéd asztalok felkapják a fejüket. A sales soha nem írhatja felül a biztonságot — a kockázatot azelőtt kellett volna jelezni, hogy kiadtad az italt, nem utána."
+        },
+        "eszkalal": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "A helyzet magától nem oldódik meg, csak rosszabb lesz. Végül vezetői beavatkozásra van szükség, méghozzá a lehető legrosszabb pillanatban — mások előtt, feszült hangulatban. Egy korai, halk jelzés mindezt elkerülte volna."
+        },
+        "jelzed": {
+          "text": "A műszakvezető úgy dönt, hogy erre a körre neki már nem szolgáltok ki több alkoholt. A többiek kérése rendben van. Hogyan kommunikálod ezt az érintett vendégnek?",
+          "choices": [
+            { "text": "Nyugodtan és halkan: elmondod, hogy most már nem tudtok neki több alkoholt adni, de hozol helyette vizet vagy egy alkoholmentes italt.", "next": "jo_kommunikacio" },
+            { "text": "Csak annyit mondasz neki: „sajnos nem szolgálhatunk ki többet” — és már mész is tovább.", "next": "szaraz_kozles" },
+            { "text": "Nyíltan megmondod neki az asztal előtt, hogy szerinted már túl részeg ehhez.", "next": "megszegyenit" }
+          ]
+        },
+        "jo_kommunikacio": {
+          "terminal": true,
+          "outcome": "good",
+          "text": "A vendég kicsit csalódott, de nem érzi magát megalázva — kap egy pohár vizet, a társasága zavartalanul folytatja az estét. Pontosan ez a Rumpus-standard: az alkohol megtagadása nyugodt, tényszerű és nem megszégyenítő, miközben azonnal ad egy alternatívát."
+        },
+        "szaraz_kozles": {
+          "terminal": true,
+          "outcome": "neutral",
+          "text": "A közlés technikailag helyes, de hideg — a vendég úgy érzi, egyszerűen lepattintották, alternatíva nélkül. A tartalom jó volt, a forma nem: egy pohár víz felajánlása sokat számított volna."
+        },
+        "megszegyenit": {
+          "terminal": true,
+          "outcome": "bad",
+          "text": "A vendég zavarba jön a saját társasága előtt, a hangulat egy pillanat alatt megfordul. A biztonsági döntés helyes volt, de a közlés módja pont azt csinálta, amit sosem szabad: nyilvánosan megszégyenített valakit."
+        }
+      }
     }
   ]
 }

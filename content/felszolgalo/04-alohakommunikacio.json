@@ -51,13 +51,34 @@
       "paragraphs": [
         "A dekor visszavétele természetes ok arra, hogy újra odamenj az asztalhoz — ez a legjobb pillanat egy check-backre: „Na, milyen lett? / Ízlik? / Jót ajánlottam?”",
         "A legerősebb ételajánlás mindig ahhoz kapcsolódik, amit már rendeltek — sosem sima „Kértek kaját?”. Példa: „Látom, mindenki a frissebb-savanykásabb vonalra ment. Ehhez nagyon jól működne a ___ az aktuális étlapunkról.”",
-        "Small talk — eszköz, nem kötelező kör. Nem minden asztal akar beszélgetni, olvasd a vendéget. Külföldi vendégnél: „Honnan jöttetek? Hányadik napotok Budapesten?” Nappal → este: „Most a nappali Rumpust látjátok — este egészen más világ lesz belőle.” Ha tudod a nevet a foglalásból vagy születésnapról, használd természetesen."
+        "Small talk — eszköz, nem kötelező kör. Nem minden asztal akar beszélgetni, olvasd a vendéget. Külföldi vendégnél: „Honnan jöttetek? Hányadik napotok Budapesten?” Nappal → este: „Most a nappali Rumpust látjátok — este egészen más világ lesz belőle.” Ha tudod a nevet a foglalásból vagy születésnapról, használd természetesen.",
+        "Fontos: az ajánlás stílusa nem ugyanaz csúcsidőben és lassabb időszakban. Zsúfolt estén egy asztalnál jellemzően csak 1-2 rendelési kör fér bele — ilyenkor egyetlen, összefogott ajánlásban kínáld fel a shotot, az XL-opciót és egy harapnivalót, ne kérdezgesd túl a vendéget, mert minden extra perc, amit egy asztalnál töltesz, egy másik asztaltól veszi el az idődet. Csendesebb időszakban pont fordítva: itt a kapcsolódáson van a hangsúly, nem a hatékonyságon — több, rövidebb ajánlási kör, mélyebb beszélgetés, akár egy spontán rumkóstoló is természetesen illik a ritmusba."
       ]
     },
     {
-      "id": "04-04-checkpoint",
+      "id": "04-04-eszkalacio",
+      "type": "read",
+      "xp": 14,
+      "title": "Amit te oldasz meg, amit a vezető",
+      "quote": "A vendég élménye a mi felelősségünk — de nem minden probléma a te hatásköröd.",
+      "paragraphs": [
+        "Van, amit egyedül, azonnal old meg egy jó felszolgáló: asztalcsere, ha van hova, hiányzó eszköz pótlása, egy kisebb félreértés tisztázása, alternatív ajánlás. Ezekhez nem kell megvárnod senkit, és nem kell rossz érzést se, hogy „egyedül döntöttél”.",
+        "Van, amihez mindig vezető kell — nem azért, mert nem bízunk benned, hanem mert ezekhez felhatalmazás és rálátás kell: pénz vagy kompenzáció, bármilyen konfliktus, vendégbiztonság, alkoholmegtagadás, allergén-bizonytalanság, fizetési vagy terminál vita. Itt a te dolgod nem a megoldás kitalálása, hanem az azonnali, pontos jelzés.",
+        "A mondat, amit sosem szégyen kimondani: „Megoldjuk, szólok a kollégámnak, és mindjárt visszajövök.” Ez nem gyengeség — pontosan ez mutatja meg a vendégnek, hogy komolyan vesszük a helyzetét, miközben te a hatáskörödön belül maradsz."
+      ],
+      "checklist": [
+        "Asztalcsere, ha van szabad hely — a te döntésed",
+        "Hiányzó eszköz, apró félreértés — a te döntésed",
+        "Pénz, kompenzáció, sztornó — mindig vezető",
+        "Allergén-bizonytalanság — sosem találgatás, mindig vezető / konyha",
+        "Alkoholmegtagadás — a döntés a vezetőé, a jelzés bárkié, azonnal",
+        "Agresszió, zaklatás, bármilyen biztonsági kockázat — azonnal vezető"
+      ]
+    },
+    {
+      "id": "04-05-checkpoint",
       "type": "quiz",
-      "xp": 12,
+      "xp": 30,
       "title": "Gyors ellenőrzés",
       "questions": [
         {
@@ -65,14 +86,44 @@
           "options": [
             { "t": "Amikor a pohár már teljesen kiürült.", "correct": false, "fb": "Ha megvárod az üres poharat, a vendégnek üresjárata lesz." },
             { "t": "Amikor az ital még fogyóban van, de nem fogyott még el.", "correct": true, "fb": "Pontosan — mire elkészül a következő kör, az előző éppen elfogyhat." },
-            { "t": "Tíz perccel az első ital kihozatala után, órára mérve.", "correct": false, "fb": "Nem az eltelt idő számít, hanem hol tart a pohár." }
+            { "t": "Tíz perccel az első ital kihozatala után, órára mérve.", "correct": false, "fb": "Nem az eltelt idő számít, hanem hol tart a pohár — egy lassan iszogató vendégnél tíz perc semmit nem jelent." },
+            { "t": "Amikor a vendég int, hogy szeretne rendelni.", "correct": false, "fb": "Ha ide jut a helyzet, az már szolgáltatási hiba — a jó felszolgálónak nem kell odaintegetni." }
           ]
         },
         {
           "q": "Egy vendég megkérdezi, mi az a falernum. Mit válaszolsz?",
           "options": [
-            { "t": "„Egy szirup.”", "correct": false, "fb": "Ez a tiltott válasz — lekicsinyli az összetevőt." },
-            { "t": "„Egy fűszeres tiki összetevő, amit mi készítünk házon belül.”", "correct": true, "fb": "Így adjuk el a terméket sztoriként, nem specifikációként." }
+            { "t": "„Egy szirup.”", "correct": false, "fb": "Ez a tiltott válasz — lekicsinyli az összetevőt, mintha ipari termékről beszélnénk." },
+            { "t": "„Egy fűszeres tiki összetevő, amit mi készítünk házon belül.”", "correct": true, "fb": "Így adjuk el a terméket sztoriként, nem specifikációként." },
+            { "t": "„Ezt tényleg nem tudom pontosan, de biztos finom.”", "correct": false, "fb": "A bizonytalanságot vállalhatod, de nem így — ha nem tudod, mondd, hogy utánanézel, ne mondj félvállas választ." },
+            { "t": "„Egy titkos recept, azt nem árulhatom el.”", "correct": false, "fb": "Ez inkább zavarba hozza a vendéget, mint izgalmat kelt — az összetevő eredetét titkolni nem Rumpus-stílus." }
+          ]
+        },
+        {
+          "q": "Egy vendég csúcsidőben azt kérdezi, mennyi ideig kell még várnia a koktéljára. Melyik a helyes reakció?",
+          "options": [
+            { "t": "„Fogalmam sincs, csúcsidő van, mindenki vár.”", "correct": false, "fb": "Ez a vendég problémáját a saját problémánkká teszi vissza — pontosan ezt nem szabad." },
+            { "t": "Nem szólsz semmit, mert úgyis hamarosan kész lesz.", "correct": false, "fb": "A vendégnek nem az idő a probléma elsősorban, hanem az, hogy nem tudja, számítanak-e rá — a csend rosszabb, mint egy rövid jelzés." },
+            { "t": "Rövid, őszinte státuszt adsz, és ha kell, szükség esetén vezetőt vonsz be.", "correct": true, "fb": "Pontosan ez a standard — proaktívan utánanézel, és nem hárítasz a bárra vagy a konyhára." },
+            { "t": "Azt mondod: „a bartender lassú ma”, hogy világos legyen, nem te rontottad el.", "correct": false, "fb": "Sosem hibáztatunk kollégát vagy másik szekciót a vendég előtt — a Rumpus egységként vállalja a helyzetet." }
+          ]
+        },
+        {
+          "q": "Egy vendég azt mondja, drágának találja az egyik koktélt. Mi a jó reakció?",
+          "options": [
+            { "t": "Azonnal felajánlod, hogy elengeded az árat, hogy ne legyen kellemetlen a helyzet.", "correct": false, "fb": "Kompenzációt vagy árengedményt felszolgálóként nem ígérhetsz — ez mindig vezetői hatáskör." },
+            { "t": "Nem védekezel és nem minősíted a vendég pénztárcáját — röviden elmondod, mi adja az értékét, majd ha kell, mutatsz másik opciót.", "correct": true, "fb": "Pontosan ez a Rumpus-válasz: érték, nem védekezés — és ha a vendégnek mégsem az való, adsz alternatívát." },
+            { "t": "Egyetértesz vele, hogy tényleg elég drága, de „ez van”.", "correct": false, "fb": "Ez leértékeli a saját termékünket a vendég előtt — pont ez ellen dolgozunk." },
+            { "t": "Elmagyarázod neki részletesen a bár teljes költségstruktúráját, hogy megértse az árazást.", "correct": false, "fb": "A belső költségek és marzsok nem nyilvános információk, és a vendéget sem ez érdekli — az élményt és az értéket mutasd meg, ne a kalkulációt." }
+          ]
+        },
+        {
+          "q": "Melyik helyzethez NEM kell feltétlenül azonnal vezetőt hívnod?",
+          "options": [
+            { "t": "A vendég másik, jelenleg üres asztalhoz szeretne ülni.", "correct": true, "fb": "Az asztalcsere — ha van hova és nincs bonyolult körülmény — a te döntésed lehet, nem kell mindig vezetőt vonni bele." },
+            { "t": "A vendég azt állítja, a bankkártyás fizetés lement, de nálad nem látszik terhelés.", "correct": false, "fb": "Fizetési vita mindig vezetői hatáskör — ezt sosem intézed egyedül, akármilyen egyértelműnek tűnik." },
+            { "t": "Egy allergiás vendég olyat kérdez az összetevőkről, amiben nem vagy 100%-ig biztos.", "correct": false, "fb": "Allergénnél a találgatás tilos — mindig vezetőt vagy konyhát vonsz be, akkor is, ha szerinted valószínűleg nincs benne az adott anyag." },
+            { "t": "Egy vendég agresszívan viselkedik egy másik vendéggel.", "correct": false, "fb": "Biztonsági kockázatnál mindig azonnal vezetőt hívsz — ez sosem egyszemélyes döntés." }
           ]
         }
       ]

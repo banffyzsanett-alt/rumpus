@@ -90,24 +90,109 @@
       ]
     },
     {
+      "id": "05-04b-allergen",
+      "type": "checklist-video",
+      "title": "Allergén- és élelmiszerbiztonsági minimum",
+      "xp": 12,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: allergénkérdés helyes kezelése egy rövid jelenetben — a bizonytalanság vállalása, majd az utánajárás."
+      },
+      "paragraphs": [
+        "Allergénnél a találgatás nem szakmaiság, hanem kockázat — ha nem vagy 100%-ig biztos, sosem mondasz „szerintem nincs benne” típusú választ."
+      ],
+      "checklist": [
+        "Allergénkérdésre csak ellenőrzött, aktuális információt adunk",
+        "Ha bizonytalan vagy: „Ezt ellenőrzöm a konyhával/bárral, nem szeretném rosszul mondani”",
+        "100%-os allergénmentességet sosem ígérünk, ha a konyhai/bár környezet ezt nem garantálja",
+        "A poharat a szárán vagy az alján fogjuk, az evőeszközt a nyelénél — sosem az étellel érintkező felületen",
+        "Törött üveg vagy mug esetén azonnal biztosítjuk a területet, senki ne nyúljon hozzá, a környező jeget és italt is ellenőrizzük",
+        "A vendég italát vagy ételét sosem kóstoljuk meg ugyanabból az eszközből, amiből ő fogyaszt"
+      ]
+    },
+    {
+      "id": "05-04c-alkohol",
+      "type": "checklist-video",
+      "title": "Felelős alkoholkiszolgálás",
+      "xp": 12,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: alkoholmegtagadás kommunikálása — nyugodt, nem megszégyenítő stílusban."
+      },
+      "paragraphs": [
+        "A sales soha nem írja felül a biztonságot. Ha kérdéses egy vendég további kiszolgálása, a döntést a vezető hozza meg — de a kockázatot bárkinek kötelessége jelezni, amint észreveszi."
+      ],
+      "checklist": [
+        "Figyeld a vendég állapotát, tempóját, koordinációját, kommunikációját",
+        "A további alkohol megtagadásáról a vezető dönt — a jelzés viszont bárkié, azonnal",
+        "A megtagadást nyugodtan, röviden, megszégyenítés nélkül kommunikáljuk",
+        "Mindig adunk alternatívát a megtagadás mellé: vizet vagy alkoholmentes italt",
+        "Bizonytalan életkornál a vezető döntéséig nem szolgálunk ki alkoholt, kivétel nélkül"
+      ]
+    },
+    {
+      "id": "05-04d-pos",
+      "type": "checklist-video",
+      "title": "POS, fizetés, pénzkezelés",
+      "xp": 12,
+      "video": {
+        "placeholder": true,
+        "poster": null,
+        "note": "VIDEÓ HELYE: rendelés-visszaolvasás és fizetési folyamat bemutatása a POS-on."
+      },
+      "paragraphs": [
+        "A pontosság itt gyorsabb, mint a javítás — egy jól visszaolvasott rendelés percekben mérhető időt spórol, ha később hiba derülne ki."
+      ],
+      "checklist": [
+        "Összetettebb vagy módosított rendelést mindig visszaolvasunk, főleg allergénnél, extránál vagy elhagyásnál",
+        "Rossz POS-tételt nem próbálunk „valahogy kiegyenlíteni” — azonnal jelezzük a jogosult vezetőnek",
+        "Sikertelen kártyás fizetésnél nem állítjuk biztosra, hogy „nem vonta le”, amíg nem tudjuk biztosan",
+        "A szervizdíjat tényszerűen elmagyarázzuk, a borravalót sosem sugalljuk kötelezőnek",
+        "Kasszához vagy terminálhoz csak a saját, jogosult hozzáféréseddel nyúlsz — közös PIN nincs"
+      ]
+    },
+    {
       "id": "05-05-checkpoint",
       "type": "quiz",
-      "xp": 15,
+      "xp": 30,
       "title": "Gyors ellenőrzés",
       "questions": [
         {
           "q": "Egyszerre több dolog várna rád: új vendég lép be, egy elkészült ital vár felszolgálásra, egy asztal pedig fizetne. Mi jön elsőként?",
           "options": [
             { "t": "A vendég köszöntése — utána az elkészült ital, majd a fizettetés.", "correct": true, "fb": "A feladatok prioritási sorrendje: vendég köszöntése → elkészült italok felszolgálása → rendelésfelvétel → fizettetés." },
-            { "t": "A fizettetés — az asztalnak minél előbb fel kell szabadulnia.", "correct": false, "fb": "A belépő vendég köszöntése mindig előrébb való." },
-            { "t": "Az elkészült ital — az hidegszik, az nem várhat.", "correct": false, "fb": "Egy pillanatnyi Aloha nem tart tovább pár másodpercnél — nem hagyhatod köszöntés nélkül a belépőt." }
+            { "t": "A fizettetés — az asztalnak minél előbb fel kell szabadulnia.", "correct": false, "fb": "A belépő vendég köszöntése mindig előrébb való, még akkor is, ha épp egy fizetős asztal vár." },
+            { "t": "Az elkészült ital — az hidegszik, az nem várhat.", "correct": false, "fb": "Egy pillanatnyi Aloha nem tart tovább pár másodpercnél — nem hagyhatod köszöntés nélkül a belépőt." },
+            { "t": "Amelyiket a vendég hangosabban jelzi.", "correct": false, "fb": "A prioritást a helyzet határozza meg, nem az, ki hangoskodik jobban." }
           ]
         },
         {
-          "q": "Ha valakin érzed, hogy elkelne egy frissítés, mit teszel?",
+          "q": "Egy allergiás vendég megkérdezi, van-e mogyoró egy koktélban. Nem vagy biztos benne. Mit teszel?",
           "options": [
-            { "t": "Szólsz neki halkan — ez segítség, nem sértés.", "correct": true, "fb": "Pontosan — még mindig jobb, mintha a vendég jegyezné meg." },
-            { "t": "Nem szólsz, kínos lenne.", "correct": false, "fb": "A higiénia standard, nem személyes vélemény — a kollégáid felé is ez a dolgod." }
+            { "t": "„Szerintem nincs benne, de nem 100%.” — és kiszolgálod.", "correct": false, "fb": "Ez pontosan az a találgatás, ami allergénnél tilos — a bizonytalanságot sosem visszük tovább a vendégnek kiszolgálásként." },
+            { "t": "Ellenőrzöd a bárnál/konyhán, mielőtt bármit mondanál vagy kiszolgálnál.", "correct": true, "fb": "Pontosan ez a standard — allergénnél a találgatás helyett mindig ellenőrzött választ adunk." },
+            { "t": "Azt mondod, biztos nincs benne, hogy ne kelljen várakoztatni a vendéget.", "correct": false, "fb": "Ez a legveszélyesebb válasz — a vendég egészségi kockázatáról van szó, nem a kiszolgálás sebességéről." },
+            { "t": "Másik italt ajánlasz neki anélkül, hogy elmondanád, miért.", "correct": false, "fb": "A terelés önmagában nem old meg semmit, ha közben nem adsz pontos, ellenőrzött választ a kérdésére." }
+          ]
+        },
+        {
+          "q": "Egy vendég kártyás fizetése után nem látsz terhelést a rendszerben, de ő biztos benne, hogy levonták. Mi a helyes lépés?",
+          "options": [
+            { "t": "Megnyugtatod, hogy biztosan nem ment le, és újra próbáljátok.", "correct": false, "fb": "Nem állíthatod biztosra egyik irányba sem, amíg nem tudod — ez vitatott terhelés, vezetői ügy." },
+            { "t": "Nyugodtan újrapróbáljátok a hivatalos folyamat szerint, és ha vitatott a helyzet, bevonod a vezetőt.", "correct": true, "fb": "Pontosan ez a standard — nem találgatunk egyik irányba sem, a vitás fizetési helyzet mindig vezetői hatáskör." },
+            { "t": "Megkéred, hogy fizessen készpénzzel, hogy elkerüld a bonyodalmat.", "correct": false, "fb": "Ez megkerüli a problémát ahelyett, hogy tisztázná — a vendég jogos kérdésére nem ez a válasz." },
+            { "t": "Azt mondod neki, hogy biztos a bankjával van a probléma, nem nálatok.", "correct": false, "fb": "Ezt sem tudod biztosan — a felelősség áthárítása találgatáson alapul, ami itt sem megengedett." }
+          ]
+        },
+        {
+          "q": "Egy társaság egyik tagja egyre bizonytalanabbul beszél, de a többiek jó hangulatban vannak és újabb kört kérnek neki is. Mit csinálsz?",
+          "options": [
+            { "t": "Kiszolgálod, hiszen a többség rendelt, nem egyedül ő.", "correct": false, "fb": "A biztonsági kockázat egy főt érint, de a felelősség a teljes kiszolgálásé — a sales sosem írja felül a biztonságot." },
+            { "t": "Felveszed a többiek rendelését, de mielőtt bármit ígérnél neki, jelzed a helyzetet a vezetőnek.", "correct": true, "fb": "Pontosan ez a helyes sorrend — a kockázatot jelzed, mielőtt bármit kiszolgálnál, a döntést pedig a vezető hozza meg." },
+            { "t": "Egyedül döntesz úgy, hogy nem szolgálod ki, és ezt közlöd is vele azonnal.", "correct": false, "fb": "A megtagadásról a vezető dönt — te jelzel, nem te hozod meg egyedül a döntést." },
+            { "t": "Halkan megkéred a társaság egy másik tagját, hogy ő döntse el, kaphat-e még.", "correct": false, "fb": "Ez nem a te vagy a vendégtársak felelőssége — ez mindig vezetői döntés." }
           ]
         }
       ]

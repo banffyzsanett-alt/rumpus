@@ -23,6 +23,50 @@
         { "num": 13, "name": "Anyagi stabilitás", "credo": "Fontos nekem az anyagi stabilitás, mert a jó munkám megéri — nekem, a vendégnek és a Rumpusnak is. A jó ajánlás nem tukmálás: a jó service természetes folytatása.", "xp": 5 }
       ],
       "outro": "13 alapérték, egy hangon: a tiéden. Ezekre fogsz visszaemlékezni, amikor a pályán döntened kell — a következő modulban pont ez fog történni."
+    },
+    {
+      "id": "02-02-checkpoint",
+      "type": "quiz",
+      "xp": 28,
+      "title": "Melyik érték melyik helyzetben?",
+      "questions": [
+        {
+          "q": "A Rumpusban tudatosan NEM tanítjuk azt az elvet, hogy „a vendégnek mindig igaza van”. Miért, és melyik érték áll emögött?",
+          "options": [
+            { "t": "Mert a vendég élménye a mi felelősségünk, de nem minden kérése teljesíthető, biztonságos vagy helyes — ez a Becsületesség és a Precizitás következménye, nem a tisztelet hiánya.", "correct": true, "fb": "Pontosan ez a Rumpus-elv: meghallgatjuk, megoldást keresünk, de megtartjuk a szakmai és emberi határainkat." },
+            { "t": "Mert a Felejthetetlen élményadás azt jelenti, hogy bármit megadunk, amit a vendég kér, feltétel nélkül.", "correct": false, "fb": "Épp az ellenkezője — a felejthetetlen élmény nem korlátok nélküli kiszolgálás, hanem tudatosan felépített gondoskodás." },
+            { "t": "Mert a Lojalitás azt jelenti, hogy egy vitás helyzetben mindig a kollégának van igaza a vendéggel szemben.", "correct": false, "fb": "A lojalitás a csapat egységéről szól, nem arról, hogy automatikusan a kollégának adunk igazat — a panasz kivizsgálása ettől független." },
+            { "t": "Ez csak vezetői döntés, a felszolgálót nem érinti közvetlenül.", "correct": false, "fb": "Nagyon is érinti — pont a felszolgáló az, aki elsőként meghallgatja a vendéget, mielőtt bárki más belépne a helyzetbe." }
+          ]
+        },
+        {
+          "q": "Melyik érték áll a legközelebb ahhoz, amikor egy hibás rendelés után nem csak kijavítod a hibát, hanem egy extra gesztussal helyre is állítod a vendég élményét?",
+          "options": [
+            { "t": "Precizitás — a pontos munka önmagában elég.", "correct": false, "fb": "A precizitás a hiba elkerüléséről szól. Itt a hiba már megtörtént — más érték lép színre." },
+            { "t": "Maximalizmus — mindig a lehető legjobbat hozzuk ki egy helyzetből, még a hibából is.", "correct": true, "fb": "Így van. A maximalizmus nem a hibátlanságról szól, hanem arról, hogy egy rossz helyzetből is a legjobbat hozod ki." },
+            { "t": "Anyagi stabilitás — a gesztus végső soron az árbevételt védi.", "correct": false, "fb": "Túl messzire visz — a gesztus a vendégélményről szól, nem elsősorban pénzügyi megfontolásból történik." },
+            { "t": "Lojalitás — a csapat felé mutatott hűség.", "correct": false, "fb": "A lojalitás a csapatra vonatkozik, itt viszont a vendég felé tett gesztusról van szó." }
+          ]
+        },
+        {
+          "q": "Egy vendég olyat kérdez, amire nem tudod biztosan a választ. Melyik reakció felel meg a Fejlődés értékének?",
+          "options": [
+            { "t": "Kitalálsz egy magabiztos hangzású választ, hogy ne tűnj felkészületlennek.", "correct": false, "fb": "Ez a legveszélyesebb út — főleg, ha a kérdés összetevőről vagy allergénről szól. A találgatás nem szakmaiság, hanem kockázat." },
+            { "t": "„Ezt nem szeretném rosszul mondani — utánanézek, és rögtön jövök a pontos válasszal.”", "correct": true, "fb": "Pontosan ez a fejlődés hangja: a bizonytalanság vállalása nem gyengeség, a lezárás — vagyis a hazugság vagy a témaváltás — az lenne." },
+            { "t": "„Nem tudom.” — és továbblépsz a következő asztalhoz.", "correct": false, "fb": "A bizonytalanság vállalása jó, de a mondat itt lezár, ahelyett hogy megoldást ígérne. Kell hozzá a folytatás: utánanézel és visszatérsz." },
+            { "t": "Megkéred a vendéget, hogy kérdezze meg ő maga a bárpultnál.", "correct": false, "fb": "Ez áthárítás — a vendégnek nem az a dolga, hogy a mi hiányos tudásunkat pótolja." }
+          ]
+        },
+        {
+          "q": "Egy kollégád épp egy morgolódó vendégnek magyarázza az árakat egy asztalnál. Te arra sétálsz. Mi a Bajtársiasság rumpusi határa ebben a helyzetben?",
+          "options": [
+            { "t": "Azonnal odalépsz és átveszed a beszélgetést, hogy gyorsabban lezáruljon.", "correct": false, "fb": "Ezzel felülírod a kollégád vendégkommunikációját — ez nem segítség, hanem beavatkozás egy olyan helyzetbe, amit ő már kezel." },
+            { "t": "Ha a helyzet nem eszkalálódik, a háttérben maradsz, de láthatóan elérhető vagy, ha szükség lenne rád.", "correct": true, "fb": "Pontosan ez a határ: segítünk, ha kell, de nem írjuk felül egymás vendégkommunikációját olyan helyzetben, amit a kollégánk már kompetensen kezel." },
+            { "t": "Továbbmész, mert nem a te asztalod.", "correct": false, "fb": "Ez sem jó — a bajtársiasság azt is jelenti, hogy készen állsz besegíteni, ha a helyzet mégis elfajulna." },
+            { "t": "Hangosan helyesled a kollégád érvelését a vendég előtt, hogy lássa, a csapat egységes.", "correct": false, "fb": "Ez a vendég előtt inkább kínos, mint megnyugtató — a csapat egysége nem abban mutatkozik meg, hogy nyilvánosan kommentáljuk egymás munkáját." }
+          ]
+        }
+      ]
     }
   ]
 }

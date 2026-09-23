@@ -45,7 +45,7 @@
     {
       "id": "01-04-checkpoint",
       "type": "quiz",
-      "xp": 15,
+      "xp": 24,
       "title": "Gyors ellenőrzés",
       "questions": [
         {
@@ -53,14 +53,26 @@
           "options": [
             { "t": "2011-ben", "correct": false, "fb": "2011-ben csak a szikra volt meg — Tiki Mamma ekkor találkozott a tiki kultúrával." },
             { "t": "2013 decemberében", "correct": true, "fb": "Pontosan — december 6-án, a Király utcában." },
-            { "t": "2019-ben", "correct": false, "fb": "2019-ben vált a családi vállalkozás tudatosan épített rendszerré, ekkor indult a franchise-struktúra." }
+            { "t": "2016-ban", "correct": false, "fb": "2016 nem mérföldkő a Rumpus történetében — a nyitás 2013-ban volt." },
+            { "t": "2019-ben", "correct": false, "fb": "2019-ben vált a családi vállalkozás tudatosan épített rendszerré, ekkor indult a franchise-struktúra — de a bár már 6 éve állt akkor." }
           ]
         },
         {
-          "q": "Miért számít ez neked a pályán?",
+          "q": "Egy vendég félvállról odaveti: „Ez tulajdonképpen csak egy hawaii-témájú kocsma jó dekorral, nem?” Mi a Rumpus-válasz?",
           "options": [
-            { "t": "Mert ez csak egy háttértörténet, nincs köze a munkához.", "correct": false, "fb": "Pont az ellenkezője — amit te csinálsz, az a rendszer, amit majd más városok is átvesznek." },
-            { "t": "Mert amit ma csinálsz, az a Rumpus-standardot építi, amit majd franchise-partnerek is követnek.", "correct": true, "fb": "Így van. Nem csak egy műszakot húzol le — a rendszert építed." }
+            { "t": "„A koktélok a lényeg, minden más csak dísz körülötte.”", "correct": false, "fb": "Ez pont az ellenkezője annak, amit a Rumpus képvisel — nálunk a koktél egy eleme az élménynek, nem az egésze." },
+            { "t": "„Igazából egy franchise-rendszer, ami most van terjeszkedés alatt.”", "correct": false, "fb": "Igaz, de ez üzleti tény, nem az, amit a vendégnek az élményről tudnia kell." },
+            { "t": "„A koktélok fontos részei, de nem csak erről szólunk — ez egy komplett tiki élmény: rum, saját készítésű összetevők, történetek, mugok, zene, tér és vendéglátás együtt.”", "correct": true, "fb": "Pontosan ez a Rumpus-válasz — nem védekezünk, hanem megmutatjuk, mitől több egy sima bárnál." },
+            { "t": "„Amolyan hawaii-s dekoráció, ami jól mutat Instagramon.”", "correct": false, "fb": "Ez lekicsinyli azt, amit építettünk — a vizualitás egy réteg a sok közül, nem a lényeg." }
+          ]
+        },
+        {
+          "q": "Mitől prémium a Rumpus, ha nem elsősorban az árból?",
+          "options": [
+            { "t": "Attól, hogy minden asztalnál szó szerint ugyanazt a forgatókönyvet követjük, kivétel nélkül.", "correct": false, "fb": "A Rumpus pont a „lazaságba csomagolt profizmusról” szól — a merev forgatókönyv nem ez, a személyre szabottság igen." },
+            { "t": "Saját készítésű összetevők, szakmai tudás, konzisztencia, kézműves mugok és a személyre szabott figyelem együtt.", "correct": true, "fb": "Így van — a prémium nálunk nem merevség és nem az árcédula, hanem ez az együttes." },
+            { "t": "Attól, hogy az árak magasabbak, mint a szomszéd kocsmában.", "correct": false, "fb": "Az ár következmény, nem ok — önmagában egy magasabb ár még nem tesz semmit prémiummá." },
+            { "t": "Attól, hogy mindenkit pontosan ugyanolyan tempóban szolgálunk ki, függetlenül attól, ki ül az asztalnál.", "correct": false, "fb": "Pont fordítva — a jó felszolgáló a vendéghez igazítja a tempót, nem egyformává teszi mindenkit." }
           ]
         }
       ]
