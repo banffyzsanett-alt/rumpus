@@ -142,6 +142,11 @@ button{font-family:inherit;}
   max-width:var(--maxw);margin:0 auto;padding:10px 18px;
   display:flex;align-items:center;gap:10px;
 }
+#globalbar{height:3px;background:rgba(255,255,255,0.06);}
+#globalbar-fill{
+  height:100%;width:0%;background:linear-gradient(90deg,var(--coral),var(--amber));
+  transition:width .5s cubic-bezier(.2,.9,.3,1);
+}
 .brandmark{font-family:"RumpusDisplay",Georgia,serif;font-weight:400;letter-spacing:0.015em;color:#fff8ec;font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .stat-pill{
   display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;
@@ -208,7 +213,19 @@ button{font-family:inherit;}
   display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;
   letter-spacing:0.05em;text-transform:uppercase;color:#7fd0b8;background:rgba(60,138,118,0.15);
   border:1px solid rgba(60,138,118,0.35);padding:3px 9px;border-radius:999px;margin-bottom:10px;
+  animation:tagpop .32s cubic-bezier(.3,1.4,.4,1);
 }
+@keyframes tagpop{from{transform:scale(0.55);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+.module-done-cta{
+  margin:4px 0 22px;padding:22px 20px;border-radius:var(--radius);text-align:center;
+  background:linear-gradient(180deg, rgba(60,138,118,0.14), rgba(60,138,118,0.05));
+  border:1.5px solid rgba(60,138,118,0.4);
+  animation:donecta .4s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes donecta{from{transform:translateY(10px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.done-banner{font-size:14px;font-weight:800;color:#7fd0b8;letter-spacing:0.03em;margin-bottom:14px;}
+.next-module-btn{width:100%;justify-content:center;}
 
 .quote-block{
   margin:14px 0;padding:16px 18px;border-left:3px solid var(--amber);
@@ -325,6 +342,16 @@ button{font-family:inherit;}
   transition:transform .35s cubic-bezier(.2,.9,.3,1.2);
 }
 #leveltoast.show{transform:translate(-50%,0);}
+
+/* apró "+X XP" visszajelzés minden pontszerzéskor */
+#xpgaintoast{
+  position:fixed;left:50%;bottom:22px;transform:translate(-50%,10px);
+  background:rgba(20,13,8,0.92);color:var(--amber);border:1px solid rgba(232,161,58,0.4);
+  font-weight:800;font-size:13px;padding:8px 16px;border-radius:999px;
+  z-index:59;opacity:0;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+}
+#xpgaintoast.show{opacity:1;transform:translate(-50%,0);}
 
 @media (min-width:600px){
   .path-node[data-side="right"]{margin-left:22%;}

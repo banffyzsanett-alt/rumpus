@@ -26,6 +26,7 @@
       <div class="stat-pill xp" id="xppill">0 XP</div>
       <div class="stat-pill team" id="teampill" title="A csapatos nézet a 2. fázisban érkezik">Csapat · hamarosan</div>
     </div>
+    <div id="globalbar"><div id="globalbar-fill"></div></div>
   </div>
   <div id="levelbadge" hidden></div>
 
@@ -36,6 +37,7 @@
 </div>
 
 <div id="leveltoast"></div>
+<div id="xpgaintoast"></div>
 
 <section id="celebration" hidden>
   <div class="splash-bg" style="background-image:url('./images/splash-tiki.jpg')"></div>
@@ -106,8 +108,10 @@
     nameInput.addEventListener("keydown", function (e) { if (e.key === "Enter") startBtn.click(); });
   }
 
+  var totalPossibleXp = 0;
+
   function updateHeader(pulseXp) {
-    xppill.textContent = engine.totalXp() + " XP";
+    xppill.textContent = engine.totalXp() + (totalPossibleXp ? " / " + totalPossibleXp : "") + " XP";
     if (pulseXp) {
       xppill.style.transform = "scale(1.12)";
       setTimeout(function () { xppill.style.transform = "scale(1)"; }, 180);
@@ -122,6 +126,18 @@
     } else {
       levelbadge.hidden = true;
     }
+    var gbf = document.getElementById("globalbar-fill");
+    if (gbf) gbf.style.width = engine.overallPercent() + "%";
+  }
+
+  function showXpGain(amount) {
+    if (!amount) return;
+    var t = document.getElementById("xpgaintoast");
+    t.textContent = "+" + amount + " XP";
+    t.classList.remove("show");
+    void t.offsetWidth; // animáció újraindítása, ha gyorsan egymás után jön
+    t.classList.add("show");
+    setTimeout(function () { t.classList.remove("show"); }, 1100);
   }
 
   function maybeShowLevelUp(prevLabel) {
@@ -150,9 +166,46 @@
 
   function withLevelTracking(fn) {
     var prev = engine.levelLabel();
+    var beforeXp = engine.totalXp();
     var changed = fn();
-    if (changed) { updateHeader(true); maybeShowLevelUp(prev); maybeShowCelebration(); }
+    if (changed) {
+      var gained = engine.totalXp() - beforeXp;
+      updateHeader(true);
+      showXpGain(gained);
+      maybeShowLevelUp(prev);
+      maybeShowCelebration();
+      checkModuleDoneCTA();
+    }
     return changed;
+  }
+
+  // ---------------------------------------------------------------
+  // "Tovább a következő modulra" — modul 100%-ánál a lecke-lista
+  // alján jelenik meg, nem kell visszagörgetni az útvonalhoz.
+  // ---------------------------------------------------------------
+  var currentModuleId = null;
+
+  function checkModuleDoneCTA() {
+    if (!currentModuleId) return;
+    if (engine.modulePercent(currentModuleId) < 100) return;
+    if (document.getElementById("next-module-cta")) return;
+    var list = document.getElementById("lessonlist");
+    if (!list) return;
+    var idx = engine.modulesMeta.modules.findIndex(function (m) { return m.id === currentModuleId; });
+    var next = engine.modulesMeta.modules[idx + 1];
+    var wrap = E.el("div", "module-done-cta");
+    wrap.id = "next-module-cta";
+    if (next && engine.isModuleUnlocked(next.id)) {
+      wrap.innerHTML = '<div class="done-banner">✓ Modul teljesítve</div>' +
+        '<button class="primary-btn next-module-btn">Tovább: ' + E.esc(next.title) + ' →</button>';
+      wrap.querySelector(".next-module-btn").addEventListener("click", function () { openModule(next.id); });
+    } else {
+      wrap.innerHTML = '<div class="done-banner">✓ Modul teljesítve</div>' +
+        '<button class="primary-btn next-module-btn">Vissza az útvonalhoz</button>';
+      wrap.querySelector(".next-module-btn").addEventListener("click", closeModule);
+    }
+    list.appendChild(wrap);
+    wrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   document.getElementById("celebration-close").addEventListener("click", function () {
@@ -168,6 +221,7 @@
     .then(function (meta) {
       engine.setModulesMeta(meta);
       brandmark.textContent = meta.title || "Rumpus Onboarding";
+      totalPossibleXp = meta.modules.reduce(function (s, m) { return s + (m.xpReward || 0); }, 0);
       var loads = meta.modules.map(function (m) {
         return fetch(basePath + m.file).then(function (r) { return r.json(); }).then(function (content) {
           contentCache[m.id] = content;
@@ -233,6 +287,7 @@
   // Modul nézet
   // ---------------------------------------------------------------
   function closeModule() {
+    currentModuleId = null;
     moduleviewEl.hidden = true;
     moduleviewEl.innerHTML = "";
     pathEl.hidden = false;
@@ -244,6 +299,7 @@
     var meta = engine.modulesMeta.modules.filter(function (m) { return m.id === moduleId; })[0];
     var content = contentCache[moduleId];
     if (!meta || !content) return;
+    currentModuleId = moduleId;
     pathEl.hidden = true;
     moduleviewEl.hidden = false;
     moduleviewEl.innerHTML =
@@ -259,6 +315,7 @@
       list.appendChild(block);
       renderLesson(moduleId, lsn, block);
     });
+    checkModuleDoneCTA();
   }
 
   function renderLesson(moduleId, lsn, block) {
